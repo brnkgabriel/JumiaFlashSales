@@ -1,0 +1,385 @@
+
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Ubuntu:300,400,500,700|Josefin+Sans:100,300,400,600,700|Poiret+One|Questrial|Montserrat:100,200,300,400,500,600,700,800,900|Quicksand:100,200,300,400,500,600,700,800,900|Raleway:100,200,300,400,500,600,700,800,900|Open+Sans:300,400,600,700,800|Satisfy|Quicksand:300,400,500,700|Source+Sans+Pro:200,300,400,600,700,900|Open+Sans:300,400,600,700,800|Noto+Sans:400,700|Muli:200,300,400,600,700,800,900|Poppins:100,200,300,400,500,600,700,800,900|Nunito:200,300,400,600,700,800,900|Work+Sans:100,200,300,400,500,600,700,800,900|Comfortaa:300&display=swap');
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, main {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+*, *::after, *::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Poppins', 'Montserrat', 'Noto Sans', 'Open Sans', 'Raleway', 'Work Sans', 'Josefin Sans', 'Quicksand';
+  color: black;
+  background-color: #eaeded;
+}
+
+.pos-rel {
+  position: relative;
+}
+
+.pos-abs {
+  position: absolute
+}
+
+.inline-block {
+  display: inline-block;
+  vertical-align: middle
+}
+
+.-skus {
+  text-align: center;
+}
+.-skus>.-sku {
+  width: calc(100% / 2.2);
+  margin: 0.9%;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+  margin-bottom: 1.5%;
+  background-color: white;
+  padding: 5px;
+  font-size: 0.9em;
+}
+.-skus>.-sku>.-top {
+
+}
+.-skus>.-sku>.-top>.-date_time {
+  text-transform: uppercase;
+  font-weight: 600;
+  height: 20px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 5px;
+  font-size: 0.85em;
+}
+
+.-skus>.-sku>.-bottom>.-controls>.-control,
+.-skus>.-sku>.-top>.-date_time>.-dt {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.-skus>.-sku>.-top>.-date_time>.-date {
+  text-align: left;
+  width: 60%;
+  left: 0;
+}
+.-skus>.-sku>.-top>.-date_time>.-time {
+  text-align: right;
+  width: 40%;
+  left: 60%;
+}
+.-skus>.-sku.-live>.-top>.-date_time>.-time {
+  animation: blinking;
+  animation-duration: .888s;
+  animation-iteration-count: infinite;
+}
+.-skus>.-sku>.-bottom>.-controls {
+  height: 30px;
+}
+
+.-skus>.-sku>.-bottom>.-controls>.-control {
+  width: calc(100% / 3);
+  height: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+}
+.-skus>.-sku>.-bottom>.-controls>.-control::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.-skus>.-sku>.-bottom>.-controls>.-control.-prev::before {
+  content: '<';
+  font-size: 2em;
+}
+.-skus>.-sku>.-bottom>.-controls>.-control.-next::before {
+  content: '>';
+  font-size: 2em;
+}
+.-skus>.-sku>.-bottom>.-controls>.-control.-count::before {
+  content: '15/15';
+  left: unset;
+  transform: translateY(-50%);
+  right: 0;
+  color: unset;
+}
+.-skus>.-sku>.-bottom>.-controls>.-prev {
+  left: 0%;
+  cursor: pointer;
+}
+.-skus>.-sku>.-bottom>.-controls>.-next {
+  left: calc((100% / 3) + 2%);
+  cursor: pointer;
+}
+.-skus>.-sku>.-bottom>.-controls>.-count {
+  text-align: right;
+  left: calc((100% * 2 / 3) + 2%);
+  width: calc((100% / 3) - 2%);
+  box-shadow: unset;
+}
+.-skus>.-sku>.-middle {
+  width: 100%;
+  height: 135px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+.-skus>.-sku>.-middle>.-shadow {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+  background-color: rgba(0,0,0, 0.7);
+}
+.-skus>.-sku>.-middle>.-shadow::before {
+  content: 'buy now';
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  position: absolute;
+  text-transform: capitalize;
+  font-size: 1.1em;
+  font-weight: 600;
+  width: 100%;
+}
+.-skus>.-sku>.-middle>.-img {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0
+}
+/* assumption the .-img::before and .-img::after should be one for all images in the slot */
+/* when one in a group is oos, the others are oos. That's why they're grouped to begin with */
+/* they're grouped by time */
+.-skus>.-sku.-oos>.-middle>.-img::before {
+  width: 100%;
+  height: 100%;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.7);
+  z-index: 1;
+}
+.-skus>.-sku.-oos>.-middle>.-img::after {
+  content: 'gone';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+  text-transform: uppercase;
+  font-size: 2em;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.-skus>.-sku>.-middle>.-img>img {
+  width: 100%;
+  max-width: 135px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.-skus>.-sku>.-bottom {
+  
+}
+.-skus>.-sku>.-top>.-name-desc_units {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.-skus>.-sku>.-bottom>.-prices>.-old_price,
+.-skus>.-sku>.-top>.-name-desc_units>.-name {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.-skus>.-sku>.-top>.-name-desc_units>.-name {
+  margin-bottom: 3px;
+  font-size: 0.9em;
+}
+
+.-skus>.-sku>.-bottom>.-prices>.-new_price,
+.-skus>.-sku>.-top>.-name-desc_units>.-desc_units {
+  color: #444;
+  font-size: 0.9em;
+}
+.-skus>.-sku>.-top>.-name-desc_units>.-desc_units>.-desc {
+
+}
+.-skus>.-sku>.-top>.-name-desc_units>.-desc_units>.-units {
+
+}
+.-skus>.-sku>.-bottom>.-prices {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.-skus>.-sku>.-bottom>.-prices>.-old_price {
+  margin-bottom: 3px;
+}
+.-skus>.-sku>.-bottom>.-prices>.-new_price {
+  text-decoration: line-through
+}
+
+
+/* -- Countdown styling -- */
+
+#clockdiv {
+  width: 250px;
+  margin: auto;
+}
+
+#clockdiv>h3 {
+  margin-bottom: 11px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #000;
+  text-align: center;
+}
+
+.frame-wrap>div>div {
+  position: relative;
+  width: 23%;
+  text-align: center;
+  display: inline-block;
+}
+
+/* .frame-wrap > div > div:first-of-type{display:none;} */
+
+.frame-wrap>div>div::after {
+  position: absolute;
+  content: ":";
+  top: 35%;
+  right: -9%;
+  font-size: 30px;
+  line-height: 0;
+  font-weight: 700;
+}
+
+.frame-wrap>div>div:last-of-type::after {
+  display: none;
+}
+
+.frame-wrap>div>div>div:first-of-type {
+  width: 45px;
+  height: 45px;
+  margin: auto;
+  font-size: 27px;
+  line-height: 45px;
+  font-weight: 600;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 100%;
+  border-color: transparent;
+  background-color: #fff;
+}
+
+.frame-wrap>div>div:nth-of-type(2)>div:first-of-type {
+  /* background-color: #ec1a46; */
+  border-color: transparent;
+}
+
+.frame-wrap>div>div:nth-of-type(3)>div:first-of-type {
+  /* background-color: #ffd300; */
+  border-color: transparent;
+}
+
+.frame-wrap>div>div:nth-of-type(4)>div:first-of-type {
+  /* background-color: #46b153; */
+  border-color: transparent;
+}
+
+.smalltext {
+  font-size: 10px;
+  line-height: 22px;
+  text-transform: uppercase;
+  color: black;
+  font-weight: bold;
+}
+
+
+@keyframes blinking {
+  0% {
+    opacity: 0;
+  }
+  24% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  74% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
