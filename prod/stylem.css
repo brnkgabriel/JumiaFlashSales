@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Ubuntu:300,400,500,700|Josefin+Sans:100,300,400,600,700|Poiret+One|Questrial|Montserrat:100,200,300,400,500,600,700,800,900|Quicksand:100,200,300,400,500,600,700,800,900|Raleway:100,200,300,400,500,600,700,800,900|Open+Sans:300,400,600,700,800|Satisfy|Quicksand:300,400,500,700|Source+Sans+Pro:200,300,400,600,700,900|Open+Sans:300,400,600,700,800|Noto+Sans:400,700|Muli:200,300,400,600,700,800,900|Poppins:100,200,300,400,500,600,700,800,900|Nunito:200,300,400,600,700,800,900|Work+Sans:100,200,300,400,500,600,700,800,900|Comfortaa:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Ubuntu:300,400,500,700|Josefin+Sans:100,300,400,600,700|Poiret+One|Questrial|Montserrat:100,200,300,400,500,600,700,800,900|Quicksand:100,200,300,400,500,600,700,800,900|Raleway:100,200,300,400,500,600,700,800,900|Open+Sans:300,400,600,700,800|Satisfy|Quicksand:300,400,500,700|Source+Sans+Pro:200,300,400,600,700,900|Open+Sans:300,400,600,700,800|Noto+Sans:400,700|Muli:200,300,400,600,700,800,900|Poppins:100,200,300,400,500,600,700,800,900|Nunito:200,300,400,600,700,800,900|Work+Sans:100,200,300,400,500,600,700,800,900|Comfortaa:30|Anonymous+Pro:400,700|Comfortaa:300&display=swap');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -143,17 +143,22 @@ body {
 .-skus>.-sku>.-bottom>.-controls>.-control.-prev::before {
   content: '<';
   font-size: 2em;
+  font-family: 'Anonymous Pro';
+  font-weight: 800;
 }
 .-skus>.-sku>.-bottom>.-controls>.-control.-next::before {
   content: '>';
   font-size: 2em;
+  font-family: 'Anonymous Pro';
+  font-weight: 800
 }
-.-skus>.-sku>.-bottom>.-controls>.-control.-count::before {
-  content: '15/15';
+.-skus>.-sku>.-bottom>.-controls>.-control.-count>span {
   left: unset;
   transform: translateY(-50%);
   right: 0;
   color: unset;
+  top: 50%;
+  position: absolute;
 }
 .-skus>.-sku>.-bottom>.-controls>.-prev {
   left: 0%;
@@ -230,13 +235,18 @@ body {
   z-index: 1;
 }
 
-.-skus>.-sku>.-middle>.-img>img {
+.-skus>.-sku>.-middle>.-img>.-img_el {
   width: 100%;
   max-width: 135px;
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s linear
+}
+.-skus>.-sku>.-middle>.-img>.-img_el.active {
+  opacity: 1
 }
 .-skus>.-sku>.-bottom {
   
