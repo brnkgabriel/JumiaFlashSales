@@ -7,17 +7,25 @@ var Sales = function () {
   this.extraHours = 0
   this.extraMinutes = 38
   this.rawSKUs = [
-    `Elepaq Generator|4.5KVA|August 06 2019 03:04:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
-    `Samsung S10|3GB/16GB|August 07 2019 10:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
-    `Sony PS4|500GB|August 07 2019 10:00:00 GMT+0100|4,900,000|1,000,000|100|sony-ps4.jpg`,
-    `Sony PS4|500GB|August 08 2019 10:00:00 GMT+0100|5,000,000|1,000,000|100|sony-ps4.jpg`,
+    `Elepaq Generator|4.5KVA|August 08 2019 10:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
+    `Samsung S10|3GB/16GB|August 08 2019 10:30:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+    `Mama's Pride Rice|25kg|August 08 2019 14:00:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
+    `King's Vegetable Oil|5ltrs|August 08 2019 14:00:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
+    `Scanfrost Washer|6.8kg|August 08 2019 14:00:00 GMT+0100|41,740|38,990|50|washing-machine.jpg`,
+    `Laceup Sneakers|Men|August 08 2019 14:00:00 GMT+0100|41,740|38,990|100|mens-laceup-sneakers.jpg`,
+    `Kuru Mature Ram|35-40kg|August 08 2019 14:00:00 GMT+0100|80,000|49,990|10|kuru-mature-ram.jpg`,
+    `Samsung S10|3GB/16GB|August 09 2019 10:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+    `Sony PS4|500GB|August 09 2019 10:00:00 GMT+0100|4,900,000|1,000,000|100|sony-ps4.jpg`,
+    `Sony PS4|500GB|August 10 2019 10:00:00 GMT+0100|5,000,000|1,000,000|100|sony-ps4.jpg`,
+    `Samsung S10|3GB/16GB|August 10 2019 10:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
   ]
   this.skus = []
   this.months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ]
-  this.daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+  this.daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+  this.interval = null
 }
 
 Sales.prototype.expand = function (skus) {
@@ -164,7 +172,6 @@ Sales.prototype.buildTimeSKUS = function (marked) {
   Object.keys(marked).forEach(key => {
     var keyPieces = key.split('-')
     var time = (keyPieces.length == 3) ? keyPieces[2] : keyPieces[1]
-
     var timeFormat = new Date(parseInt(time))
     var sku = self.create('div', { class: '-sku inline-block', id: key }, '', '')
     var top = self.create('div', { class: '-top' }, '', '')
@@ -203,20 +210,6 @@ Sales.prototype.buildTimeSKUS = function (marked) {
     var countSpan = self.create('span', '', '', '15/15')
 
     count.appendChild(countSpan)
-    // self.append(
-    //   [
-    //     dateTime, dateTime, descUnits, descUnits,
-    //     nameDescUnits, nameDescUnits, top, top,
-    //     middle, middle, prices, prices, controls, controls,
-    //     controls, bottom, bottom, sku, sku, sku
-    //   ],
-    //   [
-    //     date, time, desc, units, name, descUnits,
-    //     dateTime, nameDescUnits, shadow, imgWrap,
-    //     oldPrice, newPrice, prev, next, count,
-    //     prices, controls, top, middle, bottom
-    //   ]
-    // )
 
     self.appendMany2One(dateTime, [date, time])
     self.appendMany2One(descUnits, [desc, units])
@@ -227,42 +220,13 @@ Sales.prototype.buildTimeSKUS = function (marked) {
     self.appendMany2One(controls, [prev, next, count])
     self.appendMany2One(bottom, [prices, controls])
     self.appendMany2One(sku, [top, middle, bottom])
-    // dateTime.appendChild(date)
-    // dateTime.appendChild(time)
-
-    // descUnits.appendChild(desc)
-    // descUnits.appendChild(units)
-
-    // nameDescUnits.appendChild(name)
-    // nameDescUnits.appendChild(descUnits)
-
-    // top.appendChild(dateTime)
-    // top.appendChild(nameDescUnits)
-
-    // middle.appendChild(shadow)
-    // middle.appendChild(imgWrap)
-
-    // prices.appendChild(oldPrice)
-    // prices.appendChild(newPrice)
-
-    // controls.appendChild(prev)
-    // controls.appendChild(next)
-    // controls.appendChild(count)
-
-    // bottom.appendChild(prices)
-    // bottom.appendChild(controls)
-
-    // sku.appendChild(top)
-    // sku.appendChild(middle)
-    // sku.appendChild(bottom)
     self.skusParent.appendChild(sku)
   })
 }
 
 Sales.prototype.append = function (parents, kids) { parents.forEach((parent, idx) => parent.appendChild(kids[idx])) }
 
-Sales.prototype.appendMany2One = function (one, many) 
-{ many.forEach(item => one.appendChild(item)) }
+Sales.prototype.appendMany2One = function (one, many) { many.forEach(item => one.appendChild(item)) }
 
 Sales.prototype.markAsSold = function (grouped) {
   var self = this, outOfStockSKUs = []
@@ -345,24 +309,32 @@ Sales.prototype.addListeners = function (groupedSKUs) {
     countEl.textContent = `1 / ${images.length}`
     var prevBtn = sku.querySelector('.-prev')
     var nextBtn = sku.querySelector('.-next')
+    if (images.length == 1) {
+      prevBtn.setAttribute('style', 'display: none')
+      nextBtn.setAttribute('style', 'display: none')
+    } else {
+      sku.addEventListener('mouseover', function () { self.stopTimer() })
+      sku.addEventListener('mouseout', function () { self.startTimer(groupedSKUs) })
+    }
 
     prevBtn.addEventListener('click', function () {
-      images.forEach(img => img.classList.remove('active'))
-      var currentIdx = self.getIdx(countEl)
-      var idx = self.updateIdx(currentIdx, images, countEl, 'prev')
-      self.updateInfo(sku, groupedSKUs, idx)
-      images[idx].classList.add('active')
+      self.updateSKU(sku, 'prev', groupedSKUs)
     })
 
     nextBtn.addEventListener('click', function () {
-      images.forEach(img => img.classList.remove('active'))
-      var currentIdx = self.getIdx(countEl)
-      var idx = self.updateIdx(currentIdx, images, countEl, 'next')
-      self.updateInfo(sku, groupedSKUs, idx)
-      images[idx].classList.add('active')
+      self.updateSKU(sku, 'next', groupedSKUs)
     })
-    console.log('should add listeners')
   })
+}
+
+Sales.prototype.updateSKU = function (sku, type, groupedSKUs) {
+  var images = sku.querySelectorAll('.-img_el')
+  var countEl = sku.querySelector('.-count>span')
+  images.forEach(img => img.classList.remove('active'))
+  var currentIdx = this.getIdx(countEl)
+  var idx = this.updateIdx(currentIdx, images, countEl, type)
+  this.updateInfo(sku, groupedSKUs, idx)
+  images[idx].classList.add('active')
 }
 
 Sales.prototype.updateInfo = function (sku, groupedSKUs, idx) {
@@ -385,4 +357,20 @@ Sales.prototype.updateIdx = function (currentIdx, images, countEl, type) {
   if (currentIdx < 1) { currentIdx = images.length }
   countEl.textContent = `${currentIdx} / ${images.length}`
   return currentIdx - 1
+}
+
+Sales.prototype.startTimer = function (groupedSKUs) {
+  var self = this, count = 0
+  var skus = document.querySelectorAll('.-sku')
+  this.interval = setInterval(() => {
+    count++
+    console.log('count', count)
+    skus.forEach(sku => {
+      self.updateSKU(sku, 'next', groupedSKUs)
+    })
+  }, 2500);
+}
+
+Sales.prototype.stopTimer = function () {
+  clearInterval(this.interval)
 }

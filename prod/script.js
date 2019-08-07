@@ -12,6 +12,7 @@ Main.prototype.init = function () {
   this.sales.setState(groupedSKUs)
   this.sales.addListeners(groupedSKUs)
   var markedSKUS = this.sales.markAsSold(groupedSKUs)
+  this.sales.startTimer(groupedSKUs)
   console.log('markedSKUS', markedSKUS)
   // console.log('expanded', timeKeys)
 }
