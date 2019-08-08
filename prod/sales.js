@@ -375,8 +375,9 @@ Sales.prototype.updateIdx = function (currentIdx, images, countEl, type) {
 Sales.prototype.startTimer = function (groupedSKUs) {
   var self = this, skus = document.querySelectorAll('.-sku')
   this.interval = setInterval(() => {
-    skus
-      .forEach(sku => { self.updateSKU(sku, 'next', groupedSKUs) })
+    // skus
+    //   .forEach(sku => { self.updateSKU(sku, 'next', groupedSKUs) })
+    self.updateSKU(skus[0], 'next', groupedSKUs)
   }, 2500);
 }
 

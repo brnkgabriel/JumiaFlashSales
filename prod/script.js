@@ -20,3 +20,19 @@ Main.prototype.init = function () {
 
 var main = new Main()
 main.init()
+
+// **************** POPUP SCRIPT ***************
+var show = document.querySelector('.md-show');
+var mask = document.querySelector('.md-mask');
+var close = document.querySelector('.md-close')
+
+show.addEventListener('click', function () {
+  mask.classList.add('md-active');
+})
+
+function closeModal() {
+  mask.classList.remove('md-active')
+}
+
+close.addEventListener('click', closeModal);
+mask.addEventListener('click', closeModal);

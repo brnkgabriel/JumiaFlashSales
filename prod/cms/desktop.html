@@ -178,12 +178,14 @@
 
   .-skus {
     text-align: center;
+    background-color: #f5f5f5;
+    padding-top: 10px;
   }
 
   .-skus>.-sku {
     width: calc(100% / 5.5);
     min-width: 214px;
-    margin: 0.5%;
+    margin: 0.7%;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
     padding: 5px;
@@ -444,6 +446,9 @@
     border: 1px solid rgba(0, 0, 0, 0.5);
     padding: 5px;
     margin-left: 5px;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
   }
 
   .-skus>.-sku>.-bottom>.-prices {
@@ -465,14 +470,18 @@
   #clockdiv {
     width: 250px;
     margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1%;
   }
 
   #clockdiv>h3 {
     margin-bottom: 11px;
-    font-size: 18px;
-    font-weight: 800;
-    color: #000;
+    font-weight: 600;
+    color: white;
     text-align: center;
+    text-transform: uppercase;
+    font-size: 1.1em;
   }
 
   .frame-wrap>div>div {
@@ -491,7 +500,8 @@
     right: -9%;
     font-size: 30px;
     line-height: 0;
-    font-weight: 700;
+    font-weight: 600;
+    color: white;
   }
 
   .frame-wrap>div>div:last-of-type::after {
@@ -502,14 +512,14 @@
     width: 45px;
     height: 45px;
     margin: auto;
-    font-size: 27px;
     line-height: 45px;
-    font-weight: 600;
     border-width: 1px;
     border-style: solid;
     border-radius: 100%;
     border-color: transparent;
     background-color: #fff;
+    font-weight: 600;
+    font-size: 1.2em;
   }
 
   .frame-wrap>div>div:nth-of-type(2)>div:first-of-type {
@@ -531,7 +541,7 @@
     font-size: 10px;
     line-height: 22px;
     text-transform: uppercase;
-    color: black;
+    color: white;
     font-weight: bold;
   }
 
@@ -573,35 +583,378 @@
       opacity: 0;
     }
   }
+
+  /* -- App DL links styling -- */
+
+  .downloadapp {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1%;
+    width: 30%;
+    max-width: 250px;
+    text-align: center;
+  }
+
+  .downloadapp>.-notification {
+    margin-bottom: 10px;
+  }
+
+  .downloadapp>.-notification>.-app {
+    color: white;
+    font-weight: 600;
+  }
+
+  .downloadapp>.-logos {}
+
+  .downloadapp>.-logos>.-logo {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% / 2.2);
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+  }
+
+  .downloadapp>.-logos>.-logo:hover {
+    transform: scale(1.05)
+  }
+
+  .downloadapp>.-logos>.-logo>img {
+    width: 100%;
+    max-width: 114px;
+  }
+
+  /* Categories */
+
+  .-categories {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0px auto;
+    text-align: center;
+    background-color: white;
+    padding: 20px 0;
+  }
+
+  .-categories>.title {
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .-categories>.-category {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% / 10);
+    margin: 0 1%;
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    color: black;
+    font-size: 0.9em;
+  }
+
+  .-categories>.-category:hover {
+    transform: scale(1.1)
+  }
+
+  .-categories>.-category>.-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle at top, #ff9707 20%, #fd5305 100%);
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .-categories>.-category>.-img>img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65%;
+  }
+
+  .-categories>.-category>.-name {
+    text-transform: capitalize;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+  .-thirty_px {
+    max-width: 30px;
+  }
+
+  /* TERMS AND CONDITIONS */
+
+  .tandc,
+  .md-show {
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+    text-transform: uppercase;
+    padding-top: 3px;
+    text-decoration: underline;
+  }
+
+  .tandc {
+    padding: 5px;
+  }
+
+  .md-show:active {
+    transform: scale(0.9);
+    outline: none;
+  }
+
+  .md-close {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    border: 4px solid #eaeded;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    font-weight: bold;
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .md-close:focus,
+  .md-close:active {
+    outline: none;
+  }
+
+  .md-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(52, 73, 94, 0.8);
+    z-index: 50;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  .md-modal {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    width: 100%;
+    max-width: 480px;
+    background: #fff;
+    z-index: 100;
+    opacity: 0;
+    transition: 0.3s ease-out;
+    transform: translate(-50%, -50%);
+  }
+
+  .md-active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .md-active+.md-modal {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    background-color: #eaeded;
+  }
+
+  .fs-tandc-cta>h2 {
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+
+  .fs-tandc-cta {
+    display: inline-block;
+    padding: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  #fs-tandc {
+    z-index: 35;
+    text-align: center;
+    background-color: white;
+  }
+
+  ol {
+    text-align: left;
+    padding-left: 30px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    background-color: #fff;
+    list-style: decimal
+  }
+
+  ol>li {
+    font-size: 0.8em;
+    margin: 10px 0px;
+  }
+
+  .fs-tandc-mh {
+    line-height: 1.2;
+    margin-top: 5%;
+    background-color: #000;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-transform: uppercase;
+    padding: 5px;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-weight: 700;
+  }
+
+  .osh-search-bar>.field-panel {
+    z-index: 30 !important;
+  }
 </style>
 
+
 <div class="-container">
-  <div class="time" id="clockdiv">
-    <h3>next flash sales starts in</h3>
-    <div class="countdown">
-      <div class="frame-wrap">
-        <div id="bf-flashsale-timer">
-          <div>
-            <div class="days"></div>
-            <div class="smalltext">Days</div>
-          </div>
-          <div>
-            <div class="hours"></div>
-            <div class="smalltext">Hours</div>
-          </div>
-          <div>
-            <div class="minutes"></div>
-            <div class="smalltext">Minutes</div>
-          </div>
-          <div>
-            <div class="seconds"></div>
-            <div class="smalltext">Seconds</div>
+  <div class="-header pos-rel">
+    <div class="time pos-abs" id="clockdiv">
+      <h3>next flash sales starts in</h3>
+      <div class="countdown">
+        <div class="frame-wrap">
+          <div id="bf-flashsale-timer">
+            <div>
+              <div class="days"></div>
+              <div class="smalltext">Days</div>
+            </div>
+            <div>
+              <div class="hours"></div>
+              <div class="smalltext">Hours</div>
+            </div>
+            <div>
+              <div class="minutes"></div>
+              <div class="smalltext">Minutes</div>
+            </div>
+            <div>
+              <div class="seconds"></div>
+              <div class="smalltext">Seconds</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="downloadapp pos-abs">
+      <div class="-notification">
+        <div class="-app">APP ONLY</div>
+        <div class="-app">DOWNLOAD THE JUMIA APP</div>
+      </div>
+      <div class="-logos">
+        <a href="https://itunes.apple.com/us/app/jumia-online-shopping/id925015459?mt=8&source=FlashSales_AppleApps"
+          class="-logo" target="_blank">
+          <img src="https://eg.jumia.is/cms/sandbox/018/bf/App-store_xsat2x-8.png" alt="apple app logo" />
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.jumia.android&hl=en&source=FlashSales_AndroidApps"
+          class="-logo" target="_blank">
+          <img src="https://eg.jumia.is/cms/sandbox/018/bf/App-store_xsat2x-8.png" alt="google app logo" />
+        </a>
+      </div>
+    </div>
+    <img src="https://ng.jumia.is/cms/8-18/wednesday-supersale/wss_strip_generic.jpg" alt="banner" />
   </div>
+
+  <section id="fs-tandc">
+    <div class="fs-tandc-cta">
+      For everything you need to know about Jumia’s Flash Sales, <span class="md-show">click here</span>
+    </div>
+
+    <div class="md-mask" role="dialog"></div>
+    <div class="md-modal" role="alert">
+      <button class="md-close" role="button">x</button>
+
+      <h1 class="fs-tandc-mh">Everything you need to know about Jumia’s Flash Sales</h1>
+      <ol>
+        <li>Selected products are offered to the public at highly subsidized prices by Jumia. Discount level can be as
+          high as
+          90% off depending on the offer</li>
+        <li>The number of products are of a limited quantity.</li>
+        <li>Flash sales go live at a specified time.</li>
+        <li>Flash sales are only available on the Jumia App.</li>
+        <li>Flash sales are usually limited to one item per customer.</li>
+        <li>As selected products are popular and of limited quantity, you can expect them to sell out very quickly.
+        </li>
+        <li>Flash sales typically sell out in seconds.</li>
+        <li>Finding an item and adding it to your cart is no guaranty that you will be able to checkout with it before
+          others.
+        </li>
+        <li>Bear in mind that tens of thousands of people are on the same page trying to buy the same product.</li>
+        <li>It’s really a case of the fastest fingers first.</li>
+        <li>You need to be super quick with your phone and on a fast and stable internet connection to buy a flash
+          sale.</li>
+        <li>Jumia reserves the right to cancel orders it deems as fraudulent.</li>
+        <li>Jumia reserves the right to change products offered for flash sales.</li>
+      </ol>
+    </div>
+  </section>
   <div class="-skus"></div>
+
+  <div class="row -categories pos-rel">
+    <div class="title">top categories</div>
+    <a href="https://www.jumia.com.ng/deals-of-the-day/" class="-category">
+      <div class="-img">
+        <img class="-thirty_px" src="https://eg.jumia.is/cms/sandbox/019/ja/ts0/icn-alldeals.png"
+          alt="deals of the day" />
+      </div>
+      <div class="-name">deals of the day</div>
+    </a>
+    <a href="https://www.jumia.com.ng/electronics/" class="-category">
+      <div class="-img">
+        <img class="-thirty_px" src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/electronics.png"
+          alt="electronics" />
+      </div>
+      <div class="-name">electronics</div>
+    </a>
+    <a href="https://www.jumia.com.ng/phones-tablets/" class="-category">
+      <div class="-img">
+        <img src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/phones.png" alt="phones" />
+      </div>
+      <div class="-name">phones</div>
+    </a>
+    <a href="https://www.jumia.com.ng/computing/" class="-category">
+      <div class="-img">
+        <img src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/computing.png" alt="computing" />
+      </div>
+      <div class="-name">computing</div>
+    </a>
+    <a href="https://www.jumia.com.ng/home-office-appliances/" class="-category">
+      <div class="-img">
+        <img src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/home-appliances.png"
+          alt="home &amp; appliances" />
+      </div>
+      <div class="-name">home &amp; appliances</div>
+    </a>
+    <a href="https://www.jumia.com.ng/category-fashion-by-jumia/" class="-category">
+      <div class="-img">
+        <img src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/fashion.png" alt="fashion" />
+      </div>
+      <div class="-name">fashion</div>
+    </a>
+    <a href="https://www.jumia.com.ng/groceries/" class="-category">
+      <div class="-img">
+        <img src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/groceries.png" alt="groceries" />
+      </div>
+      <div class="-name">groceries</div>
+    </a>
+  </div>
 </div>
 
 <script>
@@ -1001,6 +1354,21 @@
     this.sales.startTimer(groupedSKUs)
     console.log('markedSKUS', markedSKUS)
   }
+
+  var show = document.querySelector('.md-show');
+  var mask = document.querySelector('.md-mask');
+  var close = document.querySelector('.md-close')
+
+  show.addEventListener('click', function () {
+    mask.classList.add('md-active');
+  })
+
+  function closeModal() {
+    mask.classList.remove('md-active')
+  }
+
+  close.addEventListener('click', closeModal);
+  mask.addEventListener('click', closeModal);
 
   var main = new Main()
   main.init()
