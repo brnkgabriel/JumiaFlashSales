@@ -1,0 +1,1003 @@
+<style type="text/css">
+  @import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Ubuntu:300,400,500,700|Josefin+Sans:100,300,400,600,700|Poiret+One|Questrial|Montserrat:100,200,300,400,500,600,700,800,900|Quicksand:100,200,300,400,500,600,700,800,900|Raleway:100,200,300,400,500,600,700,800,900|Open+Sans:300,400,600,700,800|Satisfy|Quicksand:300,400,500,700|Source+Sans+Pro:200,300,400,600,700,900|Open+Sans:300,400,600,700,800|Noto+Sans:400,700|Muli:200,300,400,600,700,800,900|Poppins:100,200,300,400,500,600,700,800,900|Nunito:200,300,400,600,700,800,900|Work+Sans:100,200,300,400,500,600,700,800,900|Comfortaa:30|Anonymous+Pro:400,700|Comfortaa:300&display=swap');
+
+  html,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* HTML5 display-role reset for older browsers */
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  section,
+  main {
+    display: block;
+  }
+
+  body {
+    line-height: 1;
+  }
+
+  ol,
+  ul {
+    list-style: none;
+  }
+
+  blockquote,
+  q {
+    quotes: none;
+  }
+
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: '';
+    content: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  *,
+  *::after,
+  *::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  html * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Poppins', 'Montserrat', 'Noto Sans', 'Open Sans', 'Raleway', 'Work Sans', 'Josefin Sans', 'Quicksand';
+    color: black;
+    background-color: #eaeded;
+  }
+
+  .-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .pos-rel {
+    position: relative;
+  }
+
+  .pos-abs {
+    position: absolute
+  }
+
+  .inline-block {
+    display: inline-block;
+    vertical-align: middle
+  }
+
+  .-skus {
+    text-align: center;
+  }
+
+  .-skus>.-sku {
+    width: calc(100% / 2.2);
+    min-width: 155px;
+    margin: 0.5%;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+    padding: 5px;
+    font-size: 0.9em;
+  }
+
+  .-skus>.-sku.-live>.-middle {
+    pointer-events: all;
+  }
+
+  .-skus>.-sku>.-top {}
+
+  .-skus>.-sku>.-top>.-date_time {
+    text-transform: uppercase;
+    font-weight: 600;
+    height: 20px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 5px;
+    font-size: 0.85em;
+  }
+
+  .-skus>.-sku>.-bottom>.-controls>.-control,
+  .-skus>.-sku>.-top>.-date_time>.-dt {
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+  }
+
+  .-skus>.-sku>.-top>.-date_time>.-date {
+    text-align: left;
+    width: 60%;
+    left: 0;
+  }
+
+  .-skus>.-sku>.-top>.-date_time>.-time {
+    text-align: right;
+    width: 40%;
+    left: 60%;
+  }
+
+  .-skus>.-sku.-live>.-top>.-date_time>.-time {
+    animation: blinking;
+    animation-duration: .888s;
+    animation-iteration-count: infinite;
+  }
+
+  .-skus>.-sku>.-bottom>.-controls {
+    height: 30px;
+  }
+
+  .-skus>.-sku>.-bottom>.-controls>.-control {
+    width: calc(100% / 3);
+    height: 100%;
+    border-radius: 5px;
+  }
+
+  .-skus>.-sku>.-bottom>.-controls>.-control::before {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .-skus>.-sku>.-bottom>.-controls>.-control.-prev::before {
+    content: '<prev';
+    font-family: 'Anonymous Pro';
+    font-weight: 800;
+    color: black;
+    left: 48%;
+  }
+
+  .-skus>.-sku>.-bottom>.-controls>.-control.-next::before {
+    content: 'next>';
+    font-family: 'Anonymous Pro';
+    font-weight: 800;
+    color: black;
+    left: 58%;
+  }
+
+  .-skus>.-sku>.-bottom>.-controls>.-control.-count>span {
+    color: unset;
+    top: 50%;
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .-skus>.-sku>.-bottom>.-controls>.-prev {
+    left: 0%;
+    cursor: pointer;
+    border-radius: 50px;
+    border: 1.5px solid black;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .-skus>.-sku>.-bottom>.-controls>.-next {
+    cursor: pointer;
+    left: unset;
+    right: 0;
+    border-radius: 50px;
+    border: 1.5px solid black;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .-skus>.-sku>.-bottom>.-controls>.-next:active,
+  .-skus>.-sku>.-bottom>.-controls>.-prev:active {
+    transform: translateY(-50%) scale(0.95);
+    transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+    color: #000;
+  }
+
+  .-skus>.-sku>.-bottom>.-controls>.-count {
+    text-align: center;
+    width: calc((100% / 3) - 2%);
+    box-shadow: unset;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .-skus>.-sku>.-middle {
+    width: 100%;
+    height: 135px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    pointer-events: none
+  }
+
+  .-skus>.-sku.-live>.-middle::before,
+  .-skus>.-sku.-live>.-middle::after {
+    content: '';
+    border: 1px solid black;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-right: none;
+    border-bottom: none;
+    width: 20px;
+    height: 20px;
+    animation: blinking;
+    animation-duration: .888s;
+    animation-iteration-count: infinite;
+    z-index: 1
+  }
+
+  .-skus>.-sku.-live>.-middle::after {
+    top: unset;
+    left: unset;
+    bottom: 0px;
+    right: 0px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+  }
+
+  .-skus>.-sku>.-middle>.-shadow {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .-skus>.-sku>.-middle>.-shadow::before {
+    content: 'buy now';
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    text-transform: capitalize;
+    font-size: 1.1em;
+    font-weight: 600;
+    width: 100%;
+  }
+
+  .-skus>.-sku>.-middle>.-img {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0
+  }
+
+  /* assumption the .-img::before and .-img::after should be one for all images in the slot */
+  /* when one in a group is oos, the others are oos. That's why they're grouped to begin with */
+  /* they're grouped by time */
+  .-skus>.-sku.-oos>.-middle>.-img::before {
+    width: 100%;
+    height: 100%;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+
+  .-skus>.-sku.-oos>.-middle>.-img::after {
+    content: 'gone';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: 600;
+    z-index: 1;
+  }
+
+  .-skus>.-sku>.-middle>.-img>.-img_el {
+    width: 100%;
+    max-width: 135px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s linear
+  }
+
+  .-skus>.-sku>.-middle>.-img>.-img_el.active {
+    opacity: 1
+  }
+
+  .-skus>.-sku>.-bottom {}
+
+  .-skus>.-sku>.-top>.-name-desc_units {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .-skus>.-sku>.-bottom>.-prices>.-old_price,
+  .-skus>.-sku>.-top>.-name-desc_units>.-name {
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+
+  .-skus>.-sku>.-top>.-name-desc_units>.-name {
+    margin-bottom: 3px;
+    font-size: 0.9em;
+  }
+
+  .-skus>.-sku>.-bottom>.-prices>.-new_price,
+  .-skus>.-sku>.-top>.-name-desc_units>.-desc_units {
+    color: #444;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+
+  .-skus>.-sku>.-top>.-name-desc_units>.-desc_units>.-desc {}
+
+  .-skus>.-sku>.-top>.-name-desc_units>.-desc_units>.-units {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    margin-left: 5px;
+  }
+
+  .-skus>.-sku>.-bottom>.-prices {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .-skus>.-sku>.-bottom>.-prices>.-old_price {
+    margin-bottom: 3px;
+  }
+
+  .-skus>.-sku>.-bottom>.-prices>.-new_price {
+    text-decoration: line-through
+  }
+
+
+  /* -- Countdown styling -- */
+
+  #clockdiv {
+    width: 250px;
+    margin: auto;
+  }
+
+  #clockdiv>h3 {
+    margin-bottom: 11px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000;
+    text-align: center;
+  }
+
+  .frame-wrap>div>div {
+    position: relative;
+    width: 23%;
+    text-align: center;
+    display: inline-block;
+  }
+
+  /* .frame-wrap > div > div:first-of-type{display:none;} */
+
+  .frame-wrap>div>div::after {
+    position: absolute;
+    content: ":";
+    top: 35%;
+    right: -9%;
+    font-size: 30px;
+    line-height: 0;
+    font-weight: 700;
+  }
+
+  .frame-wrap>div>div:last-of-type::after {
+    display: none;
+  }
+
+  .frame-wrap>div>div>div:first-of-type {
+    width: 45px;
+    height: 45px;
+    margin: auto;
+    font-size: 27px;
+    line-height: 45px;
+    font-weight: 600;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 100%;
+    border-color: transparent;
+    background-color: #fff;
+  }
+
+  .frame-wrap>div>div:nth-of-type(2)>div:first-of-type {
+    /* background-color: #ec1a46; */
+    border-color: transparent;
+  }
+
+  .frame-wrap>div>div:nth-of-type(3)>div:first-of-type {
+    /* background-color: #ffd300; */
+    border-color: transparent;
+  }
+
+  .frame-wrap>div>div:nth-of-type(4)>div:first-of-type {
+    /* background-color: #46b153; */
+    border-color: transparent;
+  }
+
+  .smalltext {
+    font-size: 10px;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: black;
+    font-weight: bold;
+  }
+
+
+  @keyframes blinking {
+    0% {
+      opacity: 0;
+    }
+
+    24% {
+      opacity: 0;
+    }
+
+    25% {
+      opacity: 1;
+    }
+
+    49% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+
+    74% {
+      opacity: 0;
+    }
+
+    75% {
+      opacity: 1;
+    }
+
+    99% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<div class="-container">
+  <div class="time" id="clockdiv">
+    <h3>next flash sales starts in</h3>
+    <div class="countdown">
+      <div class="frame-wrap">
+        <div id="bf-flashsale-timer">
+          <div>
+            <div class="days"></div>
+            <div class="smalltext">Days</div>
+          </div>
+          <div>
+            <div class="hours"></div>
+            <div class="smalltext">Hours</div>
+          </div>
+          <div>
+            <div class="minutes"></div>
+            <div class="smalltext">Minutes</div>
+          </div>
+          <div>
+            <div class="seconds"></div>
+            <div class="smalltext">Seconds</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="-skus"></div>
+</div>
+
+<script>
+  var Sales = function () {
+    this.now = new Date()
+    this.GMT = 'GMT+0100'
+    this.LIVE_LINK = '/flash-sales-live/'
+    this.skusParent = document.querySelector('.-skus')
+    this.BOB_IMG_LINK = 'https://ng.jumia.is/cms/8-18/FlashSales'
+    this.extraHours = 0
+    this.extraMinutes = 38
+    this.rawSKUs = [
+      `Mama's Pride Rice|25kg|August 08 2019 08:10:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
+      `King's Vegetable Oil|5ltrs|August 08 2019 08:10:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
+      `Scanfrost Washer|6.8kg|August 08 2019 14:00:00 GMT+0100|41,740|38,990|50|washing-machine.jpg`,
+      `Laceup Sneakers|Men|August 08 2019 14:00:00 GMT+0100|41,740|38,990|100|mens-laceup-sneakers.jpg`,
+      `Elepaq Generator|4.5KVA|August 08 2019 10:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
+      `Samsung S10|3GB/16GB|August 08 2019 10:30:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+      `Kuru Mature Ram|35-40kg|August 08 2019 14:00:00 GMT+0100|80,000|49,990|10|kuru-mature-ram.jpg`,
+      `Samsung S10|3GB/16GB|August 09 2019 10:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+      `Sony PS4|500GB|August 09 2019 10:00:00 GMT+0100|4,900,000|1,000,000|100|sony-ps4.jpg`,
+      `Sony PS4|500GB|August 10 2019 10:00:00 GMT+0100|5,000,000|1,000,000|100|sony-ps4.jpg`,
+      `Samsung S10|3GB/16GB|August 10 2019 10:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+    ]
+    this.skus = []
+    this.months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ]
+    this.daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+      this.interval = null
+  }
+
+  Sales.prototype.qSort = function (skus) {
+    if (skus.length == 0) { return [] }
+    var lesser = [], greater = [], pivot = +new Date(skus[0].split('|')[2])
+
+    for (var i = 1; i < skus.length; i++) {
+      var time = +new Date(skus[i].split('|')[2])
+      if (time < pivot) { lesser.push(skus[i]) }
+      else { greater.push(skus[i]) }
+    }
+    return this.qSort(lesser).concat(skus[0], this.qSort(greater))
+  }
+
+  Sales.prototype.expand = function (skus) {
+    return skus.map(sku => {
+      var split = sku.split('|')
+      return {
+        name: split[0], desc: split[1], time: split[2],
+        oldPrice: split[3], newPrice: split[4], units: split[5],
+        img: split[6]
+      }
+    })
+  }
+
+  Sales.prototype.gmt = function (time) {
+    var gmtIdx = time.indexOf('GMT')
+    return time.substring(gmtIdx, time.length)
+  }
+
+  Sales.prototype.skuTimes = function (skus) {
+    var self = this, skuTimes = skus.map(sku => self.time(sku))
+    return Array.from(new Set(skuTimes))
+  }
+
+  Sales.prototype.skuDays = function (skus) {
+    var self = this, days = skus.map(sku => self.day(sku))
+    return Array.from(new Set(days))
+  }
+
+  Sales.prototype.time = function (sku) { return `time-${+new Date(sku['time'])}` }
+
+  Sales.prototype.day = function (sku) {
+    var date = new Date(sku['time']).getDate()
+    var month = new Date(sku['time']).getMonth()
+    var mnth = this.months[month]
+    return `day-${mnth.toLowerCase()}-${date}`
+  }
+
+  Sales.prototype.updateGroups = function (skus, groupKeys, type) {
+    var groups = {}, self = this, fn = (type === 'time') ? self.time : self.day
+    groupKeys.forEach(groupKey => {
+      groups[groupKey] = skus.filter(sku => fn.call(self, sku) === groupKey)
+    })
+    return groups
+  }
+
+  Sales.prototype.groupedSKUs = function (skus, groupKeys, type) { return this.updateGroups(skus, groupKeys, type) }
+
+  Sales.prototype.endTime = function (time) {
+    var date = new Date(time)
+    var mt = this.months[date.getMonth()], dt = date.getDate(), yr = date.getFullYear()
+    var ct = this.carryTime(date, this.extraHours, this.extraMinutes)
+    return `${mt} ${dt} ${yr} ${ct} ${this.GMT}`
+  }
+
+  Sales.prototype.carryTime = function (date, exHrs, exMns) {
+    var hr = date.getHours(), mn = date.getMinutes(), sc = date.getSeconds()
+    var totalHours = hr + exHrs, totalMinutes = mn + exMns
+    if (totalMinutes > 59) { totalMinutes %= 60; totalHours++ }
+    return `${this.pad(totalHours)}:${this.pad(totalMinutes)}:${this.pad(sc)}`
+  }
+
+  Sales.prototype.pad = function (time) { return ('0' + time).slice(-2) }
+
+  Sales.prototype.setState = function (skus) {
+    var keys = Object.keys(skus)
+    var firstTime = skus[keys[0]][0]['time']
+    var firstStartTime = new Date(firstTime)
+    var lastIdx = keys.length - 1
+    var lastSKUS = skus[keys[lastIdx]]
+    var lastTime = lastSKUS[lastSKUS.length - 1]['time']
+    var lastEndTime = new Date(this.endTime(lastTime))
+
+    if (+this.now < +firstStartTime) { this.b41stSession(keys) }
+    else if (+this.now > +lastEndTime) { this.aftrLastSession() }
+    else { this.inAndBtwSessions(skus) }
+  }
+
+  Sales.prototype.b41stSession = function (keys) {
+    console.log('before first session')
+    var nextTime = this.nextTime(keys)
+    this.setCountDownTxt(nextTime)
+    this.initializeClock('clockdiv', nextTime['time'])
+  }
+
+  Sales.prototype.setCountDownTxt = function (nextTime) {
+    var countDownTxt = document.querySelector('#clockdiv>h3')
+    if (nextTime['type'] === 'start') { countDownTxt.textContent = 'next sale starts in' }
+    else { countDownTxt.textContent = 'current sale ends in' }
+  }
+
+  Sales.prototype.aftrLastSession = function () {
+    var counts = document.querySelectorAll('.frame-wrap>div>div>div:first-of-type')
+    counts.forEach(count => count.setAttribute('style', 'display: none'))
+  }
+
+  Sales.prototype.inAndBtwSessions = function (skus) {
+    console.log('in and between session')
+    var keys = Object.keys(skus), isInSess = false, liveTime = -1
+    for (var x = 0; x < keys.length; x++) {
+      var keySKUs = skus[keys[x]]; isInSess = this.isInSession(keySKUs)
+      if (isInSess['flag']) { liveTime = isInSess['time']; break }
+    }
+    (isInSess['flag']) ? this.inSession(liveTime) : this.btwSession()
+    var nextTime = this.nextTime(keys)
+    this.setCountDownTxt(nextTime)
+    this.initializeClock('clockdiv', nextTime['time'])
+  }
+
+  Sales.prototype.nextTime = function (keys) {
+    var self = this, timesEndTimes = [], nextTime = +new Date()
+    var times = keys.map(key => parseInt(key.split('-')[1]))
+    for (var i = 0; i < times.length; i++) {
+      timesEndTimes.push({ type: 'start', time: times[i] })
+      var endTime = +new Date(this.endTime(times[i]))
+      timesEndTimes.push({ type: 'end', time: endTime })
+    }
+    console.log('timesEndTimes', timesEndTimes)
+    var comingTimes = timesEndTimes.filter($tme => +self.now < $tme['time'])
+    if (times.length > 0) { nextTime = comingTimes[0] }
+    return nextTime
+  }
+
+  Sales.prototype.isInSession = function (keySKUs) {
+    var flag = false, time = -1
+    for (var i = 0; i < keySKUs.length; i++) {
+      var startTime = new Date(keySKUs[i]['time'])
+      var endTime = new Date(this.endTime(keySKUs[i]['time']))
+      if (+this.now >= +startTime && +this.now < +endTime) { flag = true; time = +new Date(keySKUs[i]['time']); break; }
+    }
+    return { flag, time }
+  }
+
+  Sales.prototype.inSession = function (liveTime) {
+    var sku = document.getElementById(`time-${liveTime}`)
+    sku.classList.add('-live')
+    var time = sku.querySelector('.-dt.-time')
+    time.textContent = 'live now'
+  }
+
+  Sales.prototype.btwSession = function () { console.log('between session') }
+
+  Sales.prototype.buildTimeSKUS = function (marked) {
+    var self = this
+    Object.keys(marked).forEach(key => {
+      var keyPieces = key.split('-')
+      var time = (keyPieces.length == 3) ? keyPieces[2] : keyPieces[1]
+      var timeFormat = new Date(parseInt(time))
+      var sku = self.create('div', { class: '-sku inline-block', id: key }, '', '')
+      var top = self.create('div', { class: '-top' }, '', '')
+      var dateTime = self.create('div', { class: '-date_time pos-rel' }, '', '')
+      var date = self.create('div', { class: '-dt -date pos-abs' }, '', self.dateAndTime(timeFormat)['date'])
+      var time = self.create('div', { class: '-dt -time pos-abs' }, '', self.dateAndTime(timeFormat)['time'])
+
+      var nameDescUnits = self.create('div', { class: '-name-desc_units inline-block' }, '', '')
+      var name = self.create('div', { class: '-name' }, '', marked[key][0]['name'])
+      var descUnits = self.create('div', { class: '-desc_units' }, '', '')
+      var desc = self.create('div', { class: '-desc inline-block' }, '', marked[key][0]['desc'])
+      var units = self.create('div', { class: '-units inline-block' }, '', `${marked[key][0]['units']} units`)
+
+      var middle = self.create('a', { href: self.LIVE_LINK, class: '-middle pos-rel' }, '', '')
+      var shadow = self.create('div', { class: '-shadow pos-abs' }, '', '')
+      var iwClass = '';
+      (keyPieces.length == 3) ? iwClass = '-img -oos' : iwClass = '-img'
+      var imgWrap = self.create('div', { class: iwClass }, '', '')
+      marked[key].forEach((sku, idx) => {
+        var img = self.create('img', {
+          src: `${self.BOB_IMG_LINK}/${sku['img']}`,
+          alt: 'sku_img', class: `img-${idx}`,
+          class: (idx === 0) ? '-img_el active' : '-img_el'
+        }, '', '')
+        imgWrap.appendChild(img)
+      })
+
+      var bottom = self.create('div', { class: '-bottom' }, '', '')
+      var prices = self.create('div', { class: '-prices inline-block' }, '', '')
+      var oldPrice = self.create('div', { class: '-old_price' }, '', `₦${marked[key][0]['oldPrice']}`)
+      var newPrice = self.create('div', { class: '-new_price' }, '', `₦${marked[key][0]['newPrice']}`)
+      var controls = self.create('div', { class: '-controls pos-rel' }, '', '')
+      var prev = self.create('div', { class: '-control -prev pos-abs' }, '', '')
+      var next = self.create('div', { class: '-control -next pos-abs' }, '', '')
+      var count = self.create('div', { class: '-control -count pos-abs' }, '', '')
+      var countSpan = self.create('span', '', '', '15/15')
+
+      count.appendChild(countSpan)
+
+      self.appendMany2One(dateTime, [date, time])
+      self.appendMany2One(descUnits, [desc, units])
+      self.appendMany2One(nameDescUnits, [name, descUnits])
+      self.appendMany2One(top, [dateTime, nameDescUnits])
+      self.appendMany2One(middle, [shadow, imgWrap])
+      self.appendMany2One(prices, [oldPrice, newPrice])
+      self.appendMany2One(controls, [prev, next, count])
+      self.appendMany2One(bottom, [prices, controls])
+      self.appendMany2One(sku, [top, middle, bottom])
+      self.skusParent.appendChild(sku)
+    })
+  }
+
+  Sales.prototype.append = function (parents, kids) { parents.forEach((parent, idx) => parent.appendChild(kids[idx])) }
+
+  Sales.prototype.appendMany2One = function (one, many) { many.forEach(item => one.appendChild(item)) }
+
+  Sales.prototype.markAsSold = function (grouped) {
+    var self = this, outOfStockSKUs = []
+    Object.keys(grouped).forEach(key => {
+      var timeTxtNo = key.split('-'), time = parseInt(timeTxtNo[1])
+      var endTime = self.endTime(time)
+      if (+self.now >= +new Date(endTime)) {
+        var outOfStockSKU = document.getElementById(`time-${timeTxtNo[1]}`)
+        outOfStockSKU.classList.add('-oos')
+        outOfStockSKUs.push(outOfStockSKU)
+        self.skusParent.removeChild(outOfStockSKU)
+      }
+    })
+    outOfStockSKUs.forEach(sku => self.skusParent.appendChild(sku))
+  }
+
+  Sales.prototype.create = function (tag, attributes, styles, textContent) {
+    var element = document.createElement(tag);
+    Object.keys(attributes).forEach(key => element.setAttribute(key, attributes[key]));
+    Object.keys(styles).forEach(key => element.setAttribute(key, styles[key]));
+    textContent ? element.innerHTML = textContent : "";
+    return element;
+  }
+
+  Sales.prototype.preppedDate = function (date) {
+    return `${this.daysOfWeek[date.getDay()]} ${this.months[date.getMonth()].substr(0, 3)} ${date.getDate()}`
+  }
+
+  Sales.prototype.twelveHrFormat = function (hr, min) {
+    if (hr === 12) { return this.pad(hr) + ":" + this.pad(min) + " PM"; }
+    else if (hr > 12) { return this.pad((hr - 12)) + ":" + this.pad(min) + " PM"; }
+    else if (hr === 0) { return 12 + ":" + this.pad(min) + " AM" }
+    else { return this.pad(hr) + ":" + this.pad(min) + " AM"; }
+  }
+
+  Sales.prototype.dateAndTime = function (date) {
+    return {
+      date: this.preppedDate(date),
+      time: this.twelveHrFormat(date.getHours(), date.getMinutes())
+    }
+  }
+
+  Sales.prototype.initializeClock = function (id, endTime) {
+    var clock = document.getElementById(id), self = this
+    var daysSpan = clock.querySelector('.days')
+    var hoursSpan = clock.querySelector('.hours')
+    var minutesSpan = clock.querySelector('.minutes')
+    var secondsSpan = clock.querySelector('.seconds')
+    var timeInterval = setInterval(updateClock, 1000)
+
+    function updateClock() {
+      var t = self.getTimeRemaining(endTime)
+      daysSpan.innerHTML = t['days']
+      hoursSpan.innerHTML = ('0' + t['hours']).slice(-2)
+      minutesSpan.innerHTML = ('0' + t['minutes']).slice(-2)
+      secondsSpan.innerHTML = ('0' + t['seconds']).slice(-2)
+      if (t['total'] <= 0) { clearInterval(timeInterval) }
+    }
+  }
+
+  Sales.prototype.getTimeRemaining = function (endTime) {
+    var t = +new Date(endTime) - (+new Date())
+    var seconds = Math.floor((t / 1000) % 60)
+    var minutes = Math.floor((t / 1000 / 60) % 60)
+    var hours = Math.floor((t / (1000 * 60 * 60)) % 24)
+    var days = Math.floor(t / (1000 * 60 * 60 * 24))
+
+    if (days == 0 && hours == 0 && minutes == 0 && seconds == 0) { setTimeout(() => { window.location.reload(true) }, 1000) }
+    return { total: t, days, hours, minutes, seconds }
+  }
+
+  Sales.prototype.addListeners = function (groupedSKUs) {
+    var self = this
+    var skus = document.querySelectorAll('.-sku')
+    skus.forEach(sku => {
+      var images = sku.querySelectorAll('.-img_el')
+      var countEl = sku.querySelector('.-count>span')
+      countEl.textContent = `1 / ${images.length}`
+      var prevBtn = sku.querySelector('.-prev')
+      var nextBtn = sku.querySelector('.-next')
+      if (images.length == 1) {
+        prevBtn.setAttribute('style', 'display: none')
+        nextBtn.setAttribute('style', 'display: none')
+      }
+
+      sku.addEventListener('mouseover', function () { self.stopTimer() })
+      sku.addEventListener('mouseout', function () { self.startTimer(groupedSKUs) })
+
+      prevBtn.addEventListener('click', function () {
+        self.updateSKU(sku, 'prev', groupedSKUs)
+      })
+
+      nextBtn.addEventListener('click', function () {
+        self.updateSKU(sku, 'next', groupedSKUs)
+      })
+    })
+  }
+
+  Sales.prototype.updateSKU = function (sku, type, groupedSKUs) {
+    var images = sku.querySelectorAll('.-img_el')
+    var countEl = sku.querySelector('.-count>span')
+    images.forEach(img => img.classList.remove('active'))
+    var currentIdx = this.getIdx(countEl)
+    var idx = this.updateIdx(currentIdx, images, countEl, type)
+    this.updateInfo(sku, groupedSKUs, idx)
+    images[idx].classList.add('active')
+  }
+
+  Sales.prototype.updateInfo = function (sku, groupedSKUs, idx) {
+    var skuId = sku.getAttribute('id')
+    var nextSKUData = groupedSKUs[skuId][idx]
+    sku.querySelector('.-name').textContent = nextSKUData['name']
+    sku.querySelector('.-desc').textContent = nextSKUData['desc']
+    sku.querySelector('.-units').textContent = `${nextSKUData['units']} units`
+    sku.querySelector('.-old_price').textContent = `₦${nextSKUData['oldPrice']}`
+    sku.querySelector('.-new_price').textContent = `₦${nextSKUData['newPrice']}`
+  }
+
+  Sales.prototype.getIdx = function (el) { return el.textContent.split('/')[0].trim() }
+
+  Sales.prototype.updateIdx = function (currentIdx, images, countEl, type) {
+    type === 'next' ? currentIdx++ : currentIdx--
+    if (currentIdx > images.length) { currentIdx = 1 }
+    if (currentIdx < 1) { currentIdx = images.length }
+    countEl.textContent = `${currentIdx} / ${images.length}`
+    return currentIdx - 1
+  }
+
+  Sales.prototype.startTimer = function (groupedSKUs) {
+    var self = this, skus = document.querySelectorAll('.-sku')
+    this.interval = setInterval(() => {
+      skus
+        .forEach(sku => { self.updateSKU(sku, 'next', groupedSKUs) })
+    }, 2500);
+  }
+
+  Sales.prototype.stopTimer = function () { clearInterval(this.interval) }
+
+  var Main = function () {
+    this.sales = null
+  }
+
+  Main.prototype.init = function () {
+    this.sales = new Sales()
+    var sortedSKUS = this.sales.qSort(this.sales.rawSKUs)
+    var expandedSKUS = this.sales.expand(sortedSKUS)
+    var timeKeys = this.sales.skuTimes(expandedSKUS)
+    var groupedSKUs = this.sales.groupedSKUs(expandedSKUS, timeKeys, 'time')
+    this.sales.buildTimeSKUS(groupedSKUs)
+    this.sales.setState(groupedSKUs)
+    this.sales.addListeners(groupedSKUs)
+    var markedSKUS = this.sales.markAsSold(groupedSKUs)
+    this.sales.startTimer(groupedSKUs)
+    console.log('markedSKUS', markedSKUS)
+  }
+
+  var main = new Main()
+  main.init()
+</script>
