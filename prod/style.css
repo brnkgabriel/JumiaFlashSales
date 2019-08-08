@@ -85,11 +85,16 @@ body {
 }
 .-skus>.-sku {
   width: calc(100% / 5.5);
+  min-width: 214px;
   margin: 0.5%;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
   background-color: white;
   padding: 5px;
   font-size: 0.9em;
+}
+
+.-skus>.-sku.-live>.-middle {
+  pointer-events: all;
 }
 .-skus>.-sku>.-top {
 
@@ -107,6 +112,7 @@ body {
 .-skus>.-sku>.-top>.-date_time>.-dt {
   top: 50%;
   transform: translateY(-50%);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
 }
 .-skus>.-sku>.-top>.-date_time>.-date {
   text-align: left;
@@ -131,51 +137,65 @@ body {
   width: calc(100% / 3);
   height: 100%;
   border-radius: 5px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
 }
 .-skus>.-sku>.-bottom>.-controls>.-control::before {
   position: absolute;
-  top: 42%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%,-50%);
 }
 .-skus>.-sku>.-bottom>.-controls>.-control.-prev::before {
-  content: '<';
-  font-size: 2em;
+  content: '<prev';
   font-family: 'Anonymous Pro';
   font-weight: 800;
-  color: white;
+  color: black;
+  left: 48%;
 }
 .-skus>.-sku>.-bottom>.-controls>.-control.-next::before {
-  content: '>';
-  font-size: 2em;
+  content: 'next>';
   font-family: 'Anonymous Pro';
   font-weight: 800;
-  color: white;
+  color: black;
+  left: 58%;
 }
+
 .-skus>.-sku>.-bottom>.-controls>.-control.-count>span {
-  left: unset;
-  transform: translateY(-50%);
-  right: 0;
   color: unset;
   top: 50%;
   position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .-skus>.-sku>.-bottom>.-controls>.-prev {
   left: 0%;
   cursor: pointer;
-  background-color: rgba(0,0,0, 0.5)
+  border-radius: 50px;
+  border: 1.5px solid black;
+  transition: background-color 0.3s, color 0.3s;
 }
 .-skus>.-sku>.-bottom>.-controls>.-next {
-  left: calc((100% / 3) + 2%);
   cursor: pointer;
-  background-color: rgba(0,0,0, 0.5)
+  left: unset;
+  right: 0;
+  border-radius: 50px;
+  border: 1.5px solid black;
+  transition: background-color 0.3s, color 0.3s;
 }
+
+.-skus>.-sku>.-bottom>.-controls>.-next:active,
+.-skus>.-sku>.-bottom>.-controls>.-prev:active {
+  transform: translateY(-50%) scale(0.95);
+  transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+  color: #000;
+}
+
 .-skus>.-sku>.-bottom>.-controls>.-count {
-  text-align: right;
-  left: calc((100% * 2 / 3) + 2%);
+  text-align: center;
   width: calc((100% / 3) - 2%);
   box-shadow: unset;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 .-skus>.-sku>.-middle {
   width: 100%;
@@ -183,7 +203,35 @@ body {
   display: block;
   margin: 0 auto;
   margin-bottom: 5px;
+  pointer-events: none
 }
+.-skus>.-sku.-live>.-middle::before,
+.-skus>.-sku.-live>.-middle::after {
+  content: '';
+  border: 1px solid black;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-right: none;
+  border-bottom: none;
+  width: 20px;
+  height: 20px;
+  animation: blinking;
+  animation-duration: .888s;
+  animation-iteration-count: infinite;
+}
+
+.-skus>.-sku.-live>.-middle::after {
+  top: unset;
+  left: unset;
+  bottom: 0px;
+  right: 0px;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: none;
+  border-left: none;
+}
+
 .-skus>.-sku>.-middle>.-shadow {
   width: 100%;
   height: 100%;

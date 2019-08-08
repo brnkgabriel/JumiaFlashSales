@@ -4,7 +4,8 @@ var Main = function () {
 
 Main.prototype.init = function () {
   this.sales = new Sales()
-  var expandedSKUS = this.sales.expand(this.sales.rawSKUs)
+  var sortedSKUS = this.sales.qSort(this.sales.rawSKUs)
+  var expandedSKUS = this.sales.expand(sortedSKUS)
   var timeKeys = this.sales.skuTimes(expandedSKUS)
   // var dayKeys = this.sales.skuDays(expandedSKUS)
   var groupedSKUs = this.sales.groupedSKUs(expandedSKUS, timeKeys, 'time')

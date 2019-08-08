@@ -7,12 +7,12 @@ var Sales = function () {
   this.extraHours = 0
   this.extraMinutes = 38
   this.rawSKUs = [
-    `Elepaq Generator|4.5KVA|August 08 2019 10:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
-    `Samsung S10|3GB/16GB|August 08 2019 10:30:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
-    `Mama's Pride Rice|25kg|August 08 2019 14:00:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
-    `King's Vegetable Oil|5ltrs|August 08 2019 14:00:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
+    `Mama's Pride Rice|25kg|August 08 2019 08:10:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
+    `King's Vegetable Oil|5ltrs|August 08 2019 08:10:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
     `Scanfrost Washer|6.8kg|August 08 2019 14:00:00 GMT+0100|41,740|38,990|50|washing-machine.jpg`,
     `Laceup Sneakers|Men|August 08 2019 14:00:00 GMT+0100|41,740|38,990|100|mens-laceup-sneakers.jpg`,
+    `Elepaq Generator|4.5KVA|August 08 2019 10:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
+    `Samsung S10|3GB/16GB|August 08 2019 10:30:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
     `Kuru Mature Ram|35-40kg|August 08 2019 14:00:00 GMT+0100|80,000|49,990|10|kuru-mature-ram.jpg`,
     `Samsung S10|3GB/16GB|August 09 2019 10:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
     `Sony PS4|500GB|August 09 2019 10:00:00 GMT+0100|4,900,000|1,000,000|100|sony-ps4.jpg`,
@@ -25,7 +25,19 @@ var Sales = function () {
     'July', 'August', 'September', 'October', 'November', 'December'
   ]
   this.daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
-  this.interval = null
+    this.interval = null
+}
+
+Sales.prototype.qSort = function (skus) {
+  if (skus.length == 0) { return [] }
+  var lesser = [], greater = [], pivot = +new Date(skus[0].split('|')[2])
+
+  for (var i = 1; i < skus.length; i++) {
+    var time = +new Date(skus[i].split('|')[2])
+    if (time < pivot) { lesser.push(skus[i]) }
+    else { greater.push(skus[i]) }
+  }
+  return this.qSort(lesser).concat(skus[0], this.qSort(greater))
 }
 
 Sales.prototype.expand = function (skus) {
@@ -161,6 +173,8 @@ Sales.prototype.isInSession = function (keySKUs) {
 Sales.prototype.inSession = function (liveTime) {
   var sku = document.getElementById(`time-${liveTime}`)
   sku.classList.add('-live')
+  var time = sku.querySelector('.-dt.-time')
+  time.textContent = 'live now'
 }
 
 Sales.prototype.btwSession = function () { console.log('between session') }
@@ -312,10 +326,10 @@ Sales.prototype.addListeners = function (groupedSKUs) {
     if (images.length == 1) {
       prevBtn.setAttribute('style', 'display: none')
       nextBtn.setAttribute('style', 'display: none')
-    } else {
-      sku.addEventListener('mouseover', function () { self.stopTimer() })
-      sku.addEventListener('mouseout', function () { self.startTimer(groupedSKUs) })
     }
+
+    sku.addEventListener('mouseover', function () { self.stopTimer() })
+    sku.addEventListener('mouseout', function () { self.startTimer(groupedSKUs) })
 
     prevBtn.addEventListener('click', function () {
       self.updateSKU(sku, 'prev', groupedSKUs)
@@ -347,9 +361,8 @@ Sales.prototype.updateInfo = function (sku, groupedSKUs, idx) {
   sku.querySelector('.-new_price').textContent = `₦${nextSKUData['newPrice']}`
 }
 
-Sales.prototype.getIdx = function (el) {
-  return el.textContent.split('/')[0].trim()
-}
+Sales.prototype.getIdx = function (el) 
+{ return el.textContent.split('/')[0].trim() }
 
 Sales.prototype.updateIdx = function (currentIdx, images, countEl, type) {
   type === 'next' ? currentIdx++ : currentIdx--
@@ -360,17 +373,12 @@ Sales.prototype.updateIdx = function (currentIdx, images, countEl, type) {
 }
 
 Sales.prototype.startTimer = function (groupedSKUs) {
-  var self = this, count = 0
-  var skus = document.querySelectorAll('.-sku')
+  var self = this, skus = document.querySelectorAll('.-sku')
   this.interval = setInterval(() => {
-    count++
-    console.log('count', count)
-    skus.forEach(sku => {
-      self.updateSKU(sku, 'next', groupedSKUs)
-    })
+    skus
+      .forEach(sku => { self.updateSKU(sku, 'next', groupedSKUs) })
   }, 2500);
 }
 
-Sales.prototype.stopTimer = function () {
-  clearInterval(this.interval)
-}
+Sales.prototype.stopTimer = function ()
+{ clearInterval(this.interval) }

@@ -3,4 +3,4 @@
 . when a particular sku button is clicked, stop all sku timer interval
 . if the mouse is not over any skus after 5 seconds, resume the interval
 
-. sort raw skus
+. reorder raw skus
