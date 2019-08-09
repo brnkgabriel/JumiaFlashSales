@@ -2,8 +2,9 @@
   @import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Ubuntu:300,400,500,700|Josefin+Sans:100,300,400,600,700|Poiret+One|Questrial|Montserrat:100,200,300,400,500,600,700,800,900|Quicksand:100,200,300,400,500,600,700,800,900|Raleway:100,200,300,400,500,600,700,800,900|Open+Sans:300,400,600,700,800|Satisfy|Quicksand:300,400,500,700|Source+Sans+Pro:200,300,400,600,700,900|Open+Sans:300,400,600,700,800|Noto+Sans:400,700|Muli:200,300,400,600,700,800,900|Poppins:100,200,300,400,500,600,700,800,900|Nunito:200,300,400,600,700,800,900|Work+Sans:100,200,300,400,500,600,700,800,900|Comfortaa:30|Anonymous+Pro:400,700|Comfortaa:300&display=swap');
 
   :root {
-    --campaignColor: #0a4396;
+    --campaignColor: #bb0000;
     --campaignDarkestColor: #001F4C;
+    --liveColor: green;
   }
 
   html,
@@ -152,7 +153,6 @@
   }
 
   body {
-    font-size: 1.6rem;
     font-family: 'Poppins', 'Montserrat', 'Noto Sans', 'Open Sans', 'Raleway', 'Work Sans', 'Josefin Sans', 'Quicksand';
     color: black;
     background-color: #eaeded;
@@ -179,16 +179,17 @@
 
   .-skus {
     text-align: center;
+    margin: 20px 0;
   }
 
   .-skus>.-sku {
-    width: calc(100% / 2.2);
-    min-width: 150px;
-    margin: 5px 0.5%;
+    width: calc(100% / 2.1);
+    margin: 0.5%;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
     padding: 5px;
     font-size: 0.9em;
+    margin-bottom: 5px;
   }
 
   .-skus>.-sku.-live>.-middle {
@@ -224,7 +225,6 @@
     text-align: right;
     width: 40%;
     left: 60%;
-    color: red;
     text-decoration: underline
   }
 
@@ -232,11 +232,11 @@
     animation: blinking;
     animation-duration: .888s;
     animation-iteration-count: infinite;
+    color: var(--liveColor)
   }
 
   .-skus>.-sku>.-bottom>.-controls {
     height: 30px;
-    display: none;
   }
 
   .-skus>.-sku>.-bottom>.-controls>.-control {
@@ -323,7 +323,7 @@
   .-skus>.-sku.-live>.-middle::before,
   .-skus>.-sku.-live>.-middle::after {
     content: '';
-    border: 1px solid black;
+    border: 1px solid green;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -342,8 +342,8 @@
     left: unset;
     bottom: 0px;
     right: 0px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    border-right: 1px solid green;
+    border-bottom: 1px solid green;
     border-top: none;
     border-left: none;
   }
@@ -446,12 +446,19 @@
     margin-top: 5px;
   }
 
-  .-skus>.-sku>.-top>.-name-desc_units>.-desc_units>.-desc {}
+  .-skus>.-sku>.-top>.-name-desc_units>.-desc_units>.-desc {
+    width: 49%;
+    text-align: right;
+    padding-right: 5px;
+  }
 
   .-skus>.-sku>.-top>.-name-desc_units>.-desc_units>.-units {
     border: 1px solid rgba(0, 0, 0, 0.5);
     padding: 5px;
-    margin-left: 5px;
+    width: 49%;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
   }
 
   .-skus>.-sku>.-bottom>.-prices {
@@ -619,7 +626,6 @@
 
   .downloadapp>.-logos>.-logo>img {
     width: 100%;
-    max-width: 114px;
   }
 
   /* Categories */
@@ -640,6 +646,7 @@
     font-weight: 600;
     text-align: center;
     text-decoration: underline;
+    color: var(--campaignColor)
   }
 
   .-categories>.-category {
@@ -673,6 +680,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+    max-width: 50px;
   }
 
   .-categories>.-category>.-name {
@@ -708,14 +716,33 @@
     outline: none;
   }
 
+  .md-close::before,
+  .md-close::after {
+    content: '';
+    width: 3px;
+    height: 50%;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  .md-close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .md-close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
   .md-close {
     position: absolute;
     top: 0;
-    left: 100%;
-    background: #000;
+    left: 50%;
+    background: var(--campaignColor);
     color: #fff;
     cursor: pointer;
-    border: 4px solid #eaeded;
+    border: 3px solid #eaeded;
     font-size: 1.2em;
     line-height: 1.2em;
     font-weight: bold;
@@ -804,25 +831,29 @@
     margin-right: 2%;
     margin-bottom: 2%;
     background-color: #fff;
-    list-style: decimal
+    list-style: decimal;
+    height: 400px;
+    overflow: auto;
   }
 
   ol>li {
     font-size: 0.8em;
-    margin: 10px 0px;
+    line-height: 1.3;
+    margin-bottom: 5px;
   }
 
   .fs-tandc-mh {
     line-height: 1.2;
     margin-top: 5%;
-    background-color: #000;
+    background-color: var(--campaignColor);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     color: #fff;
     text-transform: uppercase;
     padding: 5px;
     margin-left: 2%;
     margin-right: 2%;
-    font-weight: 700;
+    font-weight: 600;
+    font-size: 1em;
   }
 
   .osh-search-bar>.field-panel {
@@ -830,28 +861,42 @@
   }
 
   .-header {
-    background-color: #0a4396;
+    background-color: var(--campaignColor);
     padding: 10px 5px;
+    text-align: center;
   }
 
   .-header>.-logo {
     width: 90%;
-    margin: 0 auto
+    margin: 0 auto;
+    text-align: center;
   }
 
   .-header>.-logo>img {
-    width: 100%;
+    width: 70%;
   }
 
   .-header>.-description {
     text-align: center;
     margin: 20px 0;
+    font-size: 1.2em;
+    margin-bottom: 0;
+  }
+
+  .-header>.-date {
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 5px 0;
+    border-bottom: 1px solid white;
+    display: inline-block;
   }
 
   .-header>.-description>span {
     color: white;
     text-transform: uppercase;
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: 600;
   }
 
@@ -863,22 +908,23 @@
 </style>
 
 <div class="-container">
-
   <div class="-header pos-rel">
     <div class="-logo">
       <img class="-logo" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/jg-crossctry-logo.png" alt="banner" />
     </div>
+    <div class="-date">
+      <span>aug. 26</span><sup>th</sup> - <span>sep. 1</span><sup>st</sup>
+    </div>
     <div class="-description">
-      <span>mega fla</span><span class="-thunder_bolt">⚡</span><span>h</span> <span>sales</span>
+      <span>mega flash</span> <span class="-thunder_bolt">⚡</span> <span>sales</span>
     </div>
   </div>
-
   <div class="-skus">
-    <div class="-sku inline-block" id="time-1565341200000">
+    <div class="-sku inline-block -live" id="time-1566824400000">
       <div class="-top">
         <div class="-date_time pos-rel">
-          <div class="-dt -date pos-abs">fri Aug 9</div>
-          <div class="-dt -time pos-abs">10:00 AM</div>
+          <div class="-dt -date pos-abs">mon Aug 26</div>
+          <div class="-dt -time pos-abs">02:00 PM</div>
         </div>
         <div class="-name-desc_units inline-block">
           <div class="-name">Samsung S10</div>
@@ -889,148 +935,47 @@
         </div>
       </div><a href="/flash-sales-live/" class="-middle pos-rel">
         <div class="-shadow pos-abs"></div>
-        <div class="-img"><img src="https://ng.jumia.is/cms/8-18/FlashSales/samsung-s10.jpg" alt="sku_img"
-            class="-img_el active" /><img src="https://ng.jumia.is/cms/8-18/FlashSales/sony-ps4.jpg" alt="sku_img"
-            class="-img_el" /></div>
+        <div class="-img">
+          <img src="https://ng.jumia.is/cms/8-18/FlashSales/mamas-pride-25kg.jpg" alt="sku_img"
+            class="-img_el active"/>
+        </div>
       </a>
       <div class="-bottom">
         <div class="-prices inline-block">
           <div class="-old_price">₦4,800,000</div>
           <div class="-new_price">₦1,000,000</div>
         </div>
-        <div class="-controls pos-rel">
-          <div class="-control -prev pos-abs"></div>
-          <div class="-control -next pos-abs"></div>
-          <div class="-control -count pos-abs"><span>1 / 2</span></div>
-        </div>
       </div>
     </div>
-    <div class="-sku inline-block" id="time-1565427600000">
+    <div class="-sku inline-block" id="time-1566910800000">
       <div class="-top">
         <div class="-date_time pos-rel">
-          <div class="-dt -date pos-abs">sat Aug 10</div>
-          <div class="-dt -time pos-abs">10:00 AM</div>
+          <div class="-dt -date pos-abs">tue Aug 27</div>
+          <div class="-dt -time pos-abs">02:00 PM</div>
         </div>
         <div class="-name-desc_units inline-block">
-          <div class="-name">Sony PS4</div>
+          <div class="-name">King's Vegetable Oil</div>
           <div class="-desc_units">
-            <div class="-desc inline-block">500GB</div>
-            <div class="-units inline-block">100 units</div>
-          </div>
-        </div>
-      </div><a href="/flash-sales-live/" class="-middle pos-rel">
-        <div class="-shadow pos-abs"></div>
-        <div class="-img"><img src="https://ng.jumia.is/cms/8-18/FlashSales/sony-ps4.jpg" alt="sku_img"
-            class="-img_el active" /><img src="https://ng.jumia.is/cms/8-18/FlashSales/samsung-s10.jpg" alt="sku_img"
-            class="-img_el" /></div>
-      </a>
-      <div class="-bottom">
-        <div class="-prices inline-block">
-          <div class="-old_price">₦5,000,000</div>
-          <div class="-new_price">₦1,000,000</div>
-        </div>
-        <div class="-controls pos-rel">
-          <div class="-control -prev pos-abs"></div>
-          <div class="-control -next pos-abs"></div>
-          <div class="-control -count pos-abs"><span>1 / 2</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="-sku inline-block -oos" id="time-1565248200000">
-      <div class="-top">
-        <div class="-date_time pos-rel">
-          <div class="-dt -date pos-abs">thu Aug 8</div>
-          <div class="-dt -time pos-abs">08:10 AM</div>
-        </div>
-        <div class="-name-desc_units inline-block">
-          <div class="-name">Mama's Pride Rice</div>
-          <div class="-desc_units">
-            <div class="-desc inline-block">25kg</div>
+            <div class="-desc inline-block">5ltrs</div>
             <div class="-units inline-block">500 units</div>
           </div>
         </div>
       </div><a href="/flash-sales-live/" class="-middle pos-rel">
         <div class="-shadow pos-abs"></div>
-        <div class="-img"><img src="https://ng.jumia.is/cms/8-18/FlashSales/mamas-pride-25kg.jpg" alt="sku_img"
-            class="-img_el active" /><img src="https://ng.jumia.is/cms/8-18/FlashSales/kings-oil.jpg" alt="sku_img"
-            class="-img_el" /></div>
+        <div class="-img"><img src="https://ng.jumia.is/cms/8-18/FlashSales/kings-oil.jpg" alt="sku_img"
+            class="-img_el active"/></div>
       </a>
       <div class="-bottom">
         <div class="-prices inline-block">
-          <div class="-old_price">₦9,900</div>
-          <div class="-new_price">₦4,990</div>
-        </div>
-        <div class="-controls pos-rel">
-          <div class="-control -prev pos-abs"></div>
-          <div class="-control -next pos-abs"></div>
-          <div class="-control -count pos-abs"><span>1 / 2</span></div>
+          <div class="-old_price">₦4,000</div>
+          <div class="-new_price">₦2,000</div>
         </div>
       </div>
     </div>
-    <div class="-sku inline-block -oos" id="time-1565254800000">
+    <div class="-sku inline-block" id="time-1566997200000">
       <div class="-top">
         <div class="-date_time pos-rel">
-          <div class="-dt -date pos-abs">thu Aug 8</div>
-          <div class="-dt -time pos-abs">10:00 AM</div>
-        </div>
-        <div class="-name-desc_units inline-block">
-          <div class="-name">Elepaq Generator</div>
-          <div class="-desc_units">
-            <div class="-desc inline-block">4.5KVA</div>
-            <div class="-units inline-block">100 units</div>
-          </div>
-        </div>
-      </div><a href="/flash-sales-live/" class="-middle pos-rel">
-        <div class="-shadow pos-abs"></div>
-        <div class="-img"><img src="https://ng.jumia.is/cms/8-18/FlashSales/elepaq-gen-4-5.jpg" alt="sku_img"
-            class="-img_el active" /></div>
-      </a>
-      <div class="-bottom">
-        <div class="-prices inline-block">
-          <div class="-old_price">₦4,000,000</div>
-          <div class="-new_price">₦1,000,000</div>
-        </div>
-        <div class="-controls pos-rel">
-          <div class="-control -prev pos-abs" style="display: none"></div>
-          <div class="-control -next pos-abs" style="display: none"></div>
-          <div class="-control -count pos-abs"><span>1 / 1</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="-sku inline-block -oos" id="time-1565256600000">
-      <div class="-top">
-        <div class="-date_time pos-rel">
-          <div class="-dt -date pos-abs">thu Aug 8</div>
-          <div class="-dt -time pos-abs">10:30 AM</div>
-        </div>
-        <div class="-name-desc_units inline-block">
-          <div class="-name">Samsung S10</div>
-          <div class="-desc_units">
-            <div class="-desc inline-block">3GB/16GB</div>
-            <div class="-units inline-block">100 units</div>
-          </div>
-        </div>
-      </div><a href="/flash-sales-live/" class="-middle pos-rel">
-        <div class="-shadow pos-abs"></div>
-        <div class="-img"><img src="https://ng.jumia.is/cms/8-18/FlashSales/samsung-s10.jpg" alt="sku_img"
-            class="-img_el active" /></div>
-      </a>
-      <div class="-bottom">
-        <div class="-prices inline-block">
-          <div class="-old_price">₦4,800,000</div>
-          <div class="-new_price">₦1,000,000</div>
-        </div>
-        <div class="-controls pos-rel">
-          <div class="-control -prev pos-abs" style="display: none"></div>
-          <div class="-control -next pos-abs" style="display: none"></div>
-          <div class="-control -count pos-abs"><span>1 / 1</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="-sku inline-block -oos" id="time-1565269200000">
-      <div class="-top">
-        <div class="-date_time pos-rel">
-          <div class="-dt -date pos-abs">thu Aug 8</div>
+          <div class="-dt -date pos-abs">wed Aug 28</div>
           <div class="-dt -time pos-abs">02:00 PM</div>
         </div>
         <div class="-name-desc_units inline-block">
@@ -1043,97 +988,139 @@
       </div><a href="/flash-sales-live/" class="-middle pos-rel">
         <div class="-shadow pos-abs"></div>
         <div class="-img"><img src="https://ng.jumia.is/cms/8-18/FlashSales/washing-machine.jpg" alt="sku_img"
-            class="-img_el active" /><img src="https://ng.jumia.is/cms/8-18/FlashSales/mens-laceup-sneakers.jpg"
-            alt="sku_img" class="-img_el" /><img src="https://ng.jumia.is/cms/8-18/FlashSales/kuru-mature-ram.jpg"
-            alt="sku_img" class="-img_el" /></div>
+            class="-img_el active"/></div>
       </a>
       <div class="-bottom">
         <div class="-prices inline-block">
           <div class="-old_price">₦41,740</div>
           <div class="-new_price">₦38,990</div>
         </div>
-        <div class="-controls pos-rel">
-          <div class="-control -prev pos-abs"></div>
-          <div class="-control -next pos-abs"></div>
-          <div class="-control -count pos-abs"><span>1 / 3</span></div>
+      </div>
+    </div>
+    <div class="-sku inline-block" id="time-1567083600000">
+      <div class="-top">
+        <div class="-date_time pos-rel">
+          <div class="-dt -date pos-abs">thu Aug 29</div>
+          <div class="-dt -time pos-abs">02:00 PM</div>
+        </div>
+        <div class="-name-desc_units inline-block">
+          <div class="-name">Laceup Sneakers</div>
+          <div class="-desc_units">
+            <div class="-desc inline-block">Men</div>
+            <div class="-units inline-block">100 units</div>
+          </div>
+        </div>
+      </div><a href="/flash-sales-live/" class="-middle pos-rel">
+        <div class="-shadow pos-abs"></div>
+        <div class="-img"><img src="https://ng.jumia.is/cms/8-18/FlashSales/mens-laceup-sneakers.jpg" alt="sku_img"
+            class="-img_el active"/></div>
+      </a>
+      <div class="-bottom">
+        <div class="-prices inline-block">
+          <div class="-old_price">₦41,740</div>
+          <div class="-new_price">₦38,990</div>
+        </div>
+      </div>
+    </div>
+    <div class="-sku inline-block -oos" id="time-1567170000000">
+      <div class="-top">
+        <div class="-date_time pos-rel">
+          <div class="-dt -date pos-abs">fri Aug 30</div>
+          <div class="-dt -time pos-abs">02:00 PM</div>
+        </div>
+        <div class="-name-desc_units inline-block">
+          <div class="-name">Samsung S10</div>
+          <div class="-desc_units">
+            <div class="-desc inline-block">3GB/16GB</div>
+            <div class="-units inline-block">100 units</div>
+          </div>
+        </div>
+      </div><a href="/flash-sales-live/" class="-middle pos-rel">
+        <div class="-shadow pos-abs"></div>
+        <div class="-img"><img src="https://ng.jumia.is/cms/8-18/FlashSales/samsung-s10.jpg" alt="sku_img"
+            class="-img_el active"/></div>
+      </a>
+      <div class="-bottom">
+        <div class="-prices inline-block">
+          <div class="-old_price">₦4,800,000</div>
+          <div class="-new_price">₦1,000,000</div>
         </div>
       </div>
     </div>
   </div>
 
-
   <div class="row -categories pos-rel">
     <div class="title">top categories</div>
     <a href="https://www.jumia.com.ng/womens-bags/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Womens Bags" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/women-bags.jpg" />
+        <img alt="Womens Bags" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/women-bags-red.png" />
       </div>
       <div class="-name">women's bags</div>
     </a>
     <a href="https://www.jumia.com.ng/mobile-phone-cases-covers/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Mobile Cases" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/mobile-cases.png" />
+        <img alt="Mobile Cases" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/mobile-cases-red.png" />
       </div>
       <div class="-name">mobile cases</div>
     </a>
     <a href="https://www.jumia.com.ng/men-sneakers/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Men's Sneakers" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/mens-sneakers-3.png" />
+        <img alt="Men's Sneakers" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/mens-sneakers-red.png" />
       </div>
       <div class="-name">men's sneakers</div>
     </a>
     <a href="https://www.jumia.com.ng/womens-jewelry/?q=rings&amp;shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Women's Rings" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/Women-Rings.jpg" />
+        <img alt="Women's Rings" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/women-rings-red.png" />
       </div>
       <div class="-name">women's rings</div>
     </a>
     <a href="https://www.jumia.com.ng/teen-girls-fashion/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Girl's Fashion" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/girl-fas.jpg" />
+        <img alt="Girl's Fashion" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/girls-fashion-red.png" />
       </div>
       <div class="-name">girl's fashion</div>
     </a>
     <a href="https://www.jumia.com.ng/automobile/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Car Care" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/car.jpg" />
+        <img alt="Car Care" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/car-care-red.png" />
       </div>
       <div class="-name">car care</div>
     </a>
     <a href="https://www.jumia.com.ng/boys-fashion/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Boy's Fashion" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/boy-fas.jpg" />
+        <img alt="Boy's Fashion" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/boys-fashion-red.png" />
       </div>
       <div class="-name">boy's fashion</div>
     </a>
     <a href="https://www.jumia.com.ng/computer-data-storage/?q=memory+cards&amp;shipped_from=jumia_global"
       class="-category">
       <div class="-img">
-        <img alt="Memory Cards" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/SD.jpg" />
+        <img alt="Memory Cards" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/memory-cards-red.png" />
       </div>
       <div class="-name">memory cards</div>
     </a>
     <a href="https://www.jumia.com.ng/kids-fashion/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Baby's Fashion" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/baby-fashion-3.png" />
+        <img alt="Baby's Fashion" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/babys-fashion-red.png" />
       </div>
       <div class="-name">baby's fashion</div>
     </a>
     <a href="https://www.jumia.com.ng/home-lighting/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Lighting" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/lighting-3.png" />
+        <img alt="Lighting" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/lighting-red.png" />
       </div>
       <div class="-name">lighting</div>
     </a>
     <a href="https://www.jumia.com.ng/mens-t-shirts/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Men's T-Shirt" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/t-shirt.jpg" />
+        <img alt="Men's T-Shirt" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/mens-tshirt-red.png" />
       </div>
       <div class="-name">men's t-shirt</div>
     </a>
     <a href="https://www.jumia.com.ng/womens-make-up/?q=brush&amp;shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img alt="Makeup Brushes" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/mackeup.jpg" />
+        <img alt="Makeup Brushes" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/makeup-brushes-red.png" />
       </div>
       <div class="-name">makeup brushes</div>
     </a>

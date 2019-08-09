@@ -15,9 +15,6 @@ Main.prototype.init = function () {
   this.sales.startTimer(groupedSKUs)
 }
 
-var main = new Main()
-main.init()
-
 var show = document.querySelector('.md-show');
 var mask = document.querySelector('.md-mask');
 var close = document.querySelector('.md-close')
@@ -32,3 +29,6 @@ function closeModal() {
 
 close.addEventListener('click', closeModal);
 mask.addEventListener('click', closeModal);
+
+var main = new Main()
+main.init()

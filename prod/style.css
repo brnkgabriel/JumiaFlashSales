@@ -223,7 +223,7 @@ body {
 .-skus>.-sku.-live>.-middle::before,
 .-skus>.-sku.-live>.-middle::after {
   content: '';
-  border: 1px solid black;
+  border: 1px solid green;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -241,8 +241,8 @@ body {
   left: unset;
   bottom: 0px;
   right: 0px;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-right: 1px solid green;
+  border-bottom: 1px solid green;
   border-top: none;
   border-left: none;
 }

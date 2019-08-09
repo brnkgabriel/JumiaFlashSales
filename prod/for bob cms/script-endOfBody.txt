@@ -9,17 +9,81 @@ var Sales = function () {
   this.extraHours = 0
   this.extraMinutes = 38
   this.rawSKUs = [
-    `Mama's Pride Rice|25kg|August 08 2019 08:10:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
-    `King's Vegetable Oil|5ltrs|August 08 2019 08:10:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
-    `Scanfrost Washer|6.8kg|August 08 2019 14:00:00 GMT+0100|41,740|38,990|50|washing-machine.jpg`,
-    `Laceup Sneakers|Men|August 08 2019 14:00:00 GMT+0100|41,740|38,990|100|mens-laceup-sneakers.jpg`,
-    `Elepaq Generator|4.5KVA|August 08 2019 10:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
-    `Samsung S10|3GB/16GB|August 08 2019 10:30:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
-    `Kuru Mature Ram|35-40kg|August 08 2019 14:00:00 GMT+0100|80,000|49,990|10|kuru-mature-ram.jpg`,
-    `Samsung S10|3GB/16GB|August 09 2019 10:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
-    `Sony PS4|500GB|August 09 2019 10:00:00 GMT+0100|4,900,000|1,000,000|100|sony-ps4.jpg`,
-    `Sony PS4|500GB|August 10 2019 10:00:00 GMT+0100|5,000,000|1,000,000|100|sony-ps4.jpg`,
-    `Samsung S10|3GB/16GB|August 10 2019 10:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+    `Mama's Pride Rice|25kg|August 26 2019 14:00:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
+    `King's Vegetable Oil|5ltrs|August 26 2019 14:00:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
+    `Scanfrost Washer|6.8kg|August 26 2019 14:00:00 GMT+0100|41,740|38,990|50|washing-machine.jpg`,
+    `Laceup Sneakers|Men|August 26 2019 14:00:00 GMT+0100|41,740|38,990|100|mens-laceup-sneakers.jpg`,
+    `Elepaq Generator|4.5KVA|August 26 2019 14:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
+    `Samsung S10|3GB/16GB|August 26 2019 14:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+    `Kuru Mature Ram|35-40kg|August 26 2019 14:00:00 GMT+0100|80,000|49,990|10|kuru-mature-ram.jpg`,
+    `Sony PS4|500GB|August 26 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|sony-ps4.jpg`,
+    `Jumia Prime Abuja|1 month|August 26 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-1mth-abuja.jpg`,
+    `Jumia Prime Lagos|1 month|August 26 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-1mth-lagos.jpg`,
+    `Jumia Prime Abuja|3 months|August 26 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-3mths-abuja.jpg`,
+    `Jumia Prime Lagos|3 months|August 26 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-3mths-lagos.jpg`,
+    `KCL Flash Drive|32GB|August 26 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|kcl-1.jpg`,
+    `HTC Phone|3GB/32GB|August 26 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|htc-1.jpg`,
+    `Master Chef Pots|4pcs|August 26 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|master-chef-pots.jpg`,
+    `King's Vegetable Oil|5ltrs|August 27 2019 14:00:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
+    `Mama's Pride Rice|25kg|August 27 2019 14:00:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
+    `Scanfrost Washer|6.8kg|August 27 2019 14:00:00 GMT+0100|41,740|38,990|50|washing-machine.jpg`,
+    `Laceup Sneakers|Men|August 27 2019 14:00:00 GMT+0100|41,740|38,990|100|mens-laceup-sneakers.jpg`,
+    `Elepaq Generator|4.5KVA|August 27 2019 14:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
+    `Samsung S10|3GB/16GB|August 27 2019 14:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+    `Kuru Mature Ram|35-40kg|August 27 2019 14:00:00 GMT+0100|80,000|49,990|10|kuru-mature-ram.jpg`,
+    `Sony PS4|500GB|August 27 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|sony-ps4.jpg`,
+    `Jumia Prime Abuja|1 month|August 27 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-1mth-abuja.jpg`,
+    `Jumia Prime Lagos|1 month|August 27 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-1mth-lagos.jpg`,
+    `Jumia Prime Abuja|3 months|August 27 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-3mths-abuja.jpg`,
+    `Jumia Prime Lagos|3 months|August 27 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-3mths-lagos.jpg`,
+    `KCL Flash Drive|32GB|August 27 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|kcl-1.jpg`,
+    `HTC Phone|3GB/32GB|August 27 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|htc-1.jpg`,
+    `Master Chef Pots|4pcs|August 27 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|master-chef-pots.jpg`,
+    `Scanfrost Washer|6.8kg|August 28 2019 14:00:00 GMT+0100|41,740|38,990|50|washing-machine.jpg`,
+    `King's Vegetable Oil|5ltrs|August 28 2019 14:00:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
+    `Mama's Pride Rice|25kg|August 28 2019 14:00:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
+    `Laceup Sneakers|Men|August 28 2019 14:00:00 GMT+0100|41,740|38,990|100|mens-laceup-sneakers.jpg`,
+    `Elepaq Generator|4.5KVA|August 28 2019 14:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
+    `Samsung S10|3GB/16GB|August 28 2019 14:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+    `Kuru Mature Ram|35-40kg|August 28 2019 14:00:00 GMT+0100|80,000|49,990|10|kuru-mature-ram.jpg`,
+    `Sony PS4|500GB|August 28 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|sony-ps4.jpg`,
+    `Jumia Prime Abuja|1 month|August 28 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-1mth-abuja.jpg`,
+    `Jumia Prime Lagos|1 month|August 28 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-1mth-lagos.jpg`,
+    `Jumia Prime Abuja|3 months|August 28 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-3mths-abuja.jpg`,
+    `Jumia Prime Lagos|3 months|August 28 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-3mths-lagos.jpg`,
+    `KCL Flash Drive|32GB|August 28 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|kcl-1.jpg`,
+    `HTC Phone|3GB/32GB|August 28 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|htc-1.jpg`,
+    `Master Chef Pots|4pcs|August 28 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|master-chef-pots.jpg`,
+    `Laceup Sneakers|Men|August 29 2019 14:00:00 GMT+0100|41,740|38,990|100|mens-laceup-sneakers.jpg`,
+    `Scanfrost Washer|6.8kg|August 29 2019 14:00:00 GMT+0100|41,740|38,990|50|washing-machine.jpg`,
+    `King's Vegetable Oil|5ltrs|August 29 2019 14:00:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
+    `Mama's Pride Rice|25kg|August 29 2019 14:00:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
+    `Elepaq Generator|4.5KVA|August 29 2019 14:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
+    `Samsung S10|3GB/16GB|August 29 2019 14:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+    `Kuru Mature Ram|35-40kg|August 29 2019 14:00:00 GMT+0100|80,000|49,990|10|kuru-mature-ram.jpg`,
+    `Sony PS4|500GB|August 29 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|sony-ps4.jpg`,
+    `Jumia Prime Abuja|1 month|August 29 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-1mth-abuja.jpg`,
+    `Jumia Prime Lagos|1 month|August 29 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-1mth-lagos.jpg`,
+    `Jumia Prime Abuja|3 months|August 29 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-3mths-abuja.jpg`,
+    `Jumia Prime Lagos|3 months|August 29 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-3mths-lagos.jpg`,
+    `KCL Flash Drive|32GB|August 29 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|kcl-1.jpg`,
+    `HTC Phone|3GB/32GB|August 29 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|htc-1.jpg`,
+    `Master Chef Pots|4pcs|August 29 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|master-chef-pots.jpg`,
+    `Samsung S10|3GB/16GB|August 30 2019 14:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
+    `Laceup Sneakers|Men|August 30 2019 14:00:00 GMT+0100|41,740|38,990|100|mens-laceup-sneakers.jpg`,
+    `Scanfrost Washer|6.8kg|August 30 2019 14:00:00 GMT+0100|41,740|38,990|50|washing-machine.jpg`,
+    `King's Vegetable Oil|5ltrs|August 30 2019 14:00:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
+    `Mama's Pride Rice|25kg|August 30 2019 14:00:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
+    `Elepaq Generator|4.5KVA|August 30 2019 14:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
+    `Kuru Mature Ram|35-40kg|August 30 2019 14:00:00 GMT+0100|80,000|49,990|10|kuru-mature-ram.jpg`,
+    `Sony PS4|500GB|August 30 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|sony-ps4.jpg`,
+    `Jumia Prime Abuja|1 month|August 30 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-1mth-abuja.jpg`,
+    `Jumia Prime Lagos|1 month|August 30 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-1mth-lagos.jpg`,
+    `Jumia Prime Abuja|3 months|August 30 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-3mths-abuja.jpg`,
+    `Jumia Prime Lagos|3 months|August 30 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|jp-3mths-lagos.jpg`,
+    `KCL Flash Drive|32GB|August 30 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|kcl-1.jpg`,
+    `HTC Phone|3GB/32GB|August 30 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|htc-1.jpg`,
+    `Master Chef Pots|4pcs|August 30 2019 14:00:00 GMT+0100|5,000,000|1,000,000|100|master-chef-pots.jpg`,
   ]
   this.skus = []
   this.months = [
@@ -318,7 +382,7 @@ Sales.prototype.addListeners = function (groupedSKUs) {
   skus.forEach(sku => {
     var images = sku.querySelectorAll('.-img_el')
     var countEl = sku.querySelector('.-count>span')
-    countEl.textContent = `1 / ${images.length}`
+    countEl.textContent = `1 of ${images.length}`
     var prevBtn = sku.querySelector('.-prev')
     var nextBtn = sku.querySelector('.-next')
     if (images.length == 1) {
@@ -360,13 +424,13 @@ Sales.prototype.updateInfo = function (sku, groupedSKUs, idx) {
 }
 
 Sales.prototype.getIdx = function (el) 
-{ return el.textContent.split('/')[0].trim() }
+{ return el.textContent.split('of')[0].trim() }
 
 Sales.prototype.updateIdx = function (currentIdx, images, countEl, type) {
   type === 'next' ? currentIdx++ : currentIdx--
   if (currentIdx > images.length) { currentIdx = 1 }
   if (currentIdx < 1) { currentIdx = images.length }
-  countEl.textContent = `${currentIdx} / ${images.length}`
+  countEl.textContent = `${currentIdx} of ${images.length}`
   return currentIdx - 1
 }
 
@@ -393,12 +457,9 @@ Main.prototype.init = function () {
   this.sales.buildTimeSKUS(groupedSKUs)
   this.sales.setState(groupedSKUs)
   this.sales.addListeners(groupedSKUs)
-  var markedSKUS = this.sales.markAsSold(groupedSKUs)
+  this.sales.markAsSold(groupedSKUs)
   this.sales.startTimer(groupedSKUs)
 }
-
-var main = new Main()
-main.init()
 
 var show = document.querySelector('.md-show');
 var mask = document.querySelector('.md-mask');
@@ -414,4 +475,7 @@ function closeModal() {
 
 close.addEventListener('click', closeModal);
 mask.addEventListener('click', closeModal);
+
+var main = new Main()
+main.init()
 </script>
