@@ -1,6 +1,11 @@
 <style type="text/css">
   @import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Ubuntu:300,400,500,700|Josefin+Sans:100,300,400,600,700|Poiret+One|Questrial|Montserrat:100,200,300,400,500,600,700,800,900|Quicksand:100,200,300,400,500,600,700,800,900|Raleway:100,200,300,400,500,600,700,800,900|Open+Sans:300,400,600,700,800|Satisfy|Quicksand:300,400,500,700|Source+Sans+Pro:200,300,400,600,700,900|Open+Sans:300,400,600,700,800|Noto+Sans:400,700|Muli:200,300,400,600,700,800,900|Poppins:100,200,300,400,500,600,700,800,900|Nunito:200,300,400,600,700,800,900|Work+Sans:100,200,300,400,500,600,700,800,900|Comfortaa:30|Anonymous+Pro:400,700|Comfortaa:300&display=swap');
 
+  :root {
+    --campaignColor: #0a4396;
+    --campaignDarkestColor: #001F4C;
+  }
+
   html,
   body,
   div,
@@ -218,12 +223,14 @@
     text-align: left;
     width: 60%;
     left: 0;
+    color: var(--campaignColor)
   }
 
   .-skus>.-sku>.-top>.-date_time>.-time {
     text-align: right;
     width: 40%;
     left: 60%;
+    color: red;
   }
 
   .-skus>.-sku.-live>.-top>.-date_time>.-time {
@@ -253,7 +260,7 @@
     content: '<prev';
     font-family: 'Anonymous Pro';
     font-weight: 800;
-    color: black;
+    color: var(--campaignColor);
     left: 48%;
   }
 
@@ -261,24 +268,25 @@
     content: 'next>';
     font-family: 'Anonymous Pro';
     font-weight: 800;
-    color: black;
-    left: 58%;
+    color: var(--campaignColor);
+    left: 53%;
   }
 
   .-skus>.-sku>.-bottom>.-controls>.-control.-count>span {
-    color: unset;
     top: 50%;
     position: absolute;
     width: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-weight: 700;
+    color: var(--campaignColor);
   }
 
   .-skus>.-sku>.-bottom>.-controls>.-prev {
     left: 0%;
     cursor: pointer;
     border-radius: 50px;
-    border: 1.5px solid black;
+    border: 1.5px solid var(--campaignColor);
     transition: background-color 0.3s, color 0.3s;
   }
 
@@ -287,7 +295,7 @@
     left: unset;
     right: 0;
     border-radius: 50px;
-    border: 1.5px solid black;
+    border: 1.5px solid var(--campaignColor);
     transition: background-color 0.3s, color 0.3s;
   }
 
@@ -440,15 +448,21 @@
     margin-top: 5px;
   }
 
-  .-skus>.-sku>.-top>.-name-desc_units>.-desc_units>.-desc {}
+  .-skus>.-sku>.-top>.-name-desc_units>.-desc_units>.-desc {
+    width: 50%;
+    text-align: right;
+    padding-right: 5px;
+  }
 
   .-skus>.-sku>.-top>.-name-desc_units>.-desc_units>.-units {
     border: 1px solid rgba(0, 0, 0, 0.5);
-    padding: 5px;
-    margin-left: 5px;
+    padding: 5px 0;
     border-top: none;
     border-bottom: none;
     border-right: none;
+    width: 50%;
+    text-align: left;
+    padding-left: 5px;
   }
 
   .-skus>.-sku>.-bottom>.-prices {
@@ -520,6 +534,7 @@
     background-color: #fff;
     font-weight: 600;
     font-size: 1.2em;
+    color: var(--campaignColor)
   }
 
   .frame-wrap>div>div:nth-of-type(2)>div:first-of-type {
@@ -591,7 +606,7 @@
     transform: translateY(-50%);
     right: 1%;
     width: 30%;
-    max-width: 250px;
+    max-width: 280px;
     text-align: center;
   }
 
@@ -620,7 +635,6 @@
 
   .downloadapp>.-logos>.-logo>img {
     width: 100%;
-    max-width: 114px;
   }
 
   /* Categories */
@@ -638,7 +652,6 @@
     margin-bottom: 20px;
     padding-bottom: 5px;
     text-transform: uppercase;
-    font-size: 1.2em;
     font-weight: 600;
     text-align: center;
     text-decoration: underline;
@@ -647,13 +660,14 @@
   .-categories>.-category {
     display: inline-block;
     vertical-align: top;
-    width: calc(100% / 10);
-    margin: 0 1%;
+    width: calc(100% / 6.5);
+    margin: 0 0.5%;
     transform: scale(1);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
     color: black;
     font-size: 0.9em;
+    margin-bottom: 10px;
   }
 
   .-categories>.-category:hover {
@@ -664,7 +678,6 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-image: radial-gradient(circle at top, #ff9707 20%, #fd5305 100%);
     position: relative;
     margin: 0 auto;
   }
@@ -674,13 +687,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 65%;
+    width: 100%;
   }
 
   .-categories>.-category>.-name {
     text-transform: capitalize;
     margin-top: 5px;
     font-weight: 500;
+    font-size: 0.9em;
   }
 
   .-thirty_px {
@@ -713,10 +727,10 @@
     position: absolute;
     top: 0;
     left: 100%;
-    background: #000;
+    background: var(--campaignColor);
     color: #fff;
     cursor: pointer;
-    border: 4px solid #eaeded;
+    border: 3px solid #eaeded;
     font-size: 1.2em;
     line-height: 1.2em;
     font-weight: bold;
@@ -724,6 +738,25 @@
     height: 41px;
     border-radius: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .md-close::before,
+  .md-close::after {
+    content: '';
+    width: 3px;
+    height: 50%;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  .md-close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .md-close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
   }
 
   .md-close:focus,
@@ -746,7 +779,7 @@
 
   .md-modal {
     position: fixed;
-    top: 55%;
+    top: -50%;
     left: 50%;
     width: 100%;
     max-width: 480px;
@@ -755,6 +788,7 @@
     opacity: 0;
     transition: 0.3s ease-out;
     transform: translate(-50%, -50%);
+    transition: top 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
   }
 
   .md-active {
@@ -765,6 +799,7 @@
   .md-active+.md-modal {
     visibility: visible;
     opacity: 1;
+    top: 55%;
     transform: translate(-50%, -50%);
     background-color: #eaeded;
   }
@@ -810,7 +845,7 @@
   .fs-tandc-mh {
     line-height: 1.2;
     margin-top: 5%;
-    background-color: #000;
+    background-color: var(--campaignColor);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     color: #fff;
     text-transform: uppercase;
@@ -823,8 +858,47 @@
   .osh-search-bar>.field-panel {
     z-index: 30 !important;
   }
-</style>
 
+  .-header {
+    background-color: var(--campaignColor);
+    padding: 10px 5px;
+    height: 150px;
+  }
+
+  .-header>.-logo {
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .-header>.-logo>.-img {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .-header>.-logo>.-img>img {
+    width: 100%;
+  }
+
+  .-header>.-logo>.-description {
+    text-align: center;
+    margin: 5px 0;
+  }
+
+  .-header>.-logo>.-description>span {
+    color: white;
+    text-transform: uppercase;
+    font-size: 3em;
+    font-weight: 600;
+  }
+
+  .-header>.-logo>.-description>span.-thunder_bolt {
+    transform: rotate(-30deg);
+    display: inline-block;
+    text-shadow: 0px 2px red;
+  }
+</style>
 
 <div class="-container">
   <div class="-header pos-rel">
@@ -853,6 +927,14 @@
         </div>
       </div>
     </div>
+    <div class="-logo pos-abs">
+      <div class="-img">
+        <img src="https://ng.jumia.is/cms/8-18/jumia-global-universe/jg-crossctry-logo.png" alt="banner" />
+      </div>
+      <div class="-description">
+        <span>mega flash</span> <span class="-thunder_bolt">⚡</span> <span>sales</span>
+      </div>
+    </div>
     <div class="downloadapp pos-abs">
       <div class="-notification">
         <div class="-app">APP ONLY</div>
@@ -869,7 +951,6 @@
         </a>
       </div>
     </div>
-    <img src="https://ng.jumia.is/cms/8-18/wednesday-supersale/wss_strip_generic.jpg" alt="banner" />
   </div>
 
   <section id="fs-tandc">
@@ -879,7 +960,7 @@
 
     <div class="md-mask" role="dialog"></div>
     <div class="md-modal" role="alert">
-      <button class="md-close" role="button">x</button>
+      <button class="md-close" role="button"></button>
 
       <h1 class="fs-tandc-mh">Everything you need to know about Jumia’s Flash Sales</h1>
       <ol>
@@ -909,467 +990,78 @@
 
   <div class="row -categories pos-rel">
     <div class="title">top categories</div>
-    <a href="https://www.jumia.com.ng/deals-of-the-day/" class="-category">
+    <a href="https://www.jumia.com.ng/womens-bags/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img class="-thirty_px" src="https://eg.jumia.is/cms/sandbox/019/ja/ts0/icn-alldeals.png"
-          alt="deals of the day" />
+        <img alt="Womens Bags" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/women-bags.jpg" />
       </div>
-      <div class="-name">deals of the day</div>
+      <div class="-name">women's bags</div>
     </a>
-    <a href="https://www.jumia.com.ng/electronics/" class="-category">
+    <a href="https://www.jumia.com.ng/mobile-phone-cases-covers/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img class="-thirty_px" src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/electronics.png"
-          alt="electronics" />
+        <img alt="Mobile Cases" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/mobile-cases.png" />
       </div>
-      <div class="-name">electronics</div>
+      <div class="-name">mobile cases</div>
     </a>
-    <a href="https://www.jumia.com.ng/phones-tablets/" class="-category">
+    <a href="https://www.jumia.com.ng/men-sneakers/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/phones.png" alt="phones" />
+        <img alt="Men's Sneakers" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/mens-sneakers-3.png" />
       </div>
-      <div class="-name">phones</div>
+      <div class="-name">men's sneakers</div>
     </a>
-    <a href="https://www.jumia.com.ng/computing/" class="-category">
+    <a href="https://www.jumia.com.ng/womens-jewelry/?q=rings&amp;shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/computing.png" alt="computing" />
+        <img alt="Women's Rings" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/Women-Rings.jpg" />
       </div>
-      <div class="-name">computing</div>
+      <div class="-name">women's rings</div>
     </a>
-    <a href="https://www.jumia.com.ng/home-office-appliances/" class="-category">
+    <a href="https://www.jumia.com.ng/teen-girls-fashion/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/home-appliances.png"
-          alt="home &amp; appliances" />
+        <img alt="Girl's Fashion" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/girl-fas.jpg" />
       </div>
-      <div class="-name">home &amp; appliances</div>
+      <div class="-name">girl's fashion</div>
     </a>
-    <a href="https://www.jumia.com.ng/category-fashion-by-jumia/" class="-category">
+    <a href="https://www.jumia.com.ng/automobile/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/fashion.png" alt="fashion" />
+        <img alt="Car Care" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/car.jpg" />
       </div>
-      <div class="-name">fashion</div>
+      <div class="-name">car care</div>
     </a>
-    <a href="https://www.jumia.com.ng/groceries/" class="-category">
+    <a href="https://www.jumia.com.ng/boys-fashion/?shipped_from=jumia_global" class="-category">
       <div class="-img">
-        <img src="https://ng.jumia.is/cms/8-18/jumia-anniversary/2019/groceries.png" alt="groceries" />
+        <img alt="Boy's Fashion" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/boy-fas.jpg" />
       </div>
-      <div class="-name">groceries</div>
+      <div class="-name">boy's fashion</div>
+    </a>
+    <a href="https://www.jumia.com.ng/computer-data-storage/?q=memory+cards&amp;shipped_from=jumia_global"
+      class="-category">
+      <div class="-img">
+        <img alt="Memory Cards" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/SD.jpg" />
+      </div>
+      <div class="-name">memory cards</div>
+    </a>
+    <a href="https://www.jumia.com.ng/kids-fashion/?shipped_from=jumia_global" class="-category">
+      <div class="-img">
+        <img alt="Baby's Fashion" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/baby-fashion-3.png" />
+      </div>
+      <div class="-name">baby's fashion</div>
+    </a>
+    <a href="https://www.jumia.com.ng/home-lighting/?shipped_from=jumia_global" class="-category">
+      <div class="-img">
+        <img alt="Lighting" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/lighting-3.png" />
+      </div>
+      <div class="-name">lighting</div>
+    </a>
+    <a href="https://www.jumia.com.ng/mens-t-shirts/?shipped_from=jumia_global" class="-category">
+      <div class="-img">
+        <img alt="Men's T-Shirt" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/t-shirt.jpg" />
+      </div>
+      <div class="-name">men's t-shirt</div>
+    </a>
+    <a href="https://www.jumia.com.ng/womens-make-up/?q=brush&amp;shipped_from=jumia_global" class="-category">
+      <div class="-img">
+        <img alt="Makeup Brushes" src="https://ng.jumia.is/cms/8-18/jumia-global-universe/mackeup.jpg" />
+      </div>
+      <div class="-name">makeup brushes</div>
     </a>
   </div>
 </div>
-
-<script>
-  var Sales = function () {
-    this.now = new Date()
-    this.GMT = 'GMT+0100'
-    this.LIVE_LINK = '/flash-sales-live/'
-    this.skusParent = document.querySelector('.-skus')
-    this.BOB_IMG_LINK = 'https://ng.jumia.is/cms/8-18/FlashSales'
-    this.extraHours = 0
-    this.extraMinutes = 38
-    this.rawSKUs = [
-      `Mama's Pride Rice|25kg|August 08 2019 08:10:00 GMT+0100|9,900|4,990|500|mamas-pride-25kg.jpg`,
-      `King's Vegetable Oil|5ltrs|August 08 2019 08:10:00 GMT+0100|4,000|2,000|500|kings-oil.jpg`,
-      `Scanfrost Washer|6.8kg|August 08 2019 14:00:00 GMT+0100|41,740|38,990|50|washing-machine.jpg`,
-      `Laceup Sneakers|Men|August 08 2019 14:00:00 GMT+0100|41,740|38,990|100|mens-laceup-sneakers.jpg`,
-      `Elepaq Generator|4.5KVA|August 08 2019 10:00:00 GMT+0100|4,000,000|1,000,000|100|elepaq-gen-4-5.jpg`,
-      `Samsung S10|3GB/16GB|August 08 2019 10:30:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
-      `Kuru Mature Ram|35-40kg|August 08 2019 14:00:00 GMT+0100|80,000|49,990|10|kuru-mature-ram.jpg`,
-      `Samsung S10|3GB/16GB|August 09 2019 10:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
-      `Sony PS4|500GB|August 09 2019 10:00:00 GMT+0100|4,900,000|1,000,000|100|sony-ps4.jpg`,
-      `Sony PS4|500GB|August 10 2019 10:00:00 GMT+0100|5,000,000|1,000,000|100|sony-ps4.jpg`,
-      `Samsung S10|3GB/16GB|August 10 2019 10:00:00 GMT+0100|4,800,000|1,000,000|100|samsung-s10.jpg`,
-    ]
-    this.skus = []
-    this.months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ]
-    this.daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
-      this.interval = null
-  }
-
-  Sales.prototype.qSort = function (skus) {
-    if (skus.length == 0) { return [] }
-    var lesser = [], greater = [], pivot = +new Date(skus[0].split('|')[2])
-
-    for (var i = 1; i < skus.length; i++) {
-      var time = +new Date(skus[i].split('|')[2])
-      if (time < pivot) { lesser.push(skus[i]) }
-      else { greater.push(skus[i]) }
-    }
-    return this.qSort(lesser).concat(skus[0], this.qSort(greater))
-  }
-
-  Sales.prototype.expand = function (skus) {
-    return skus.map(sku => {
-      var split = sku.split('|')
-      return {
-        name: split[0], desc: split[1], time: split[2],
-        oldPrice: split[3], newPrice: split[4], units: split[5],
-        img: split[6]
-      }
-    })
-  }
-
-  Sales.prototype.gmt = function (time) {
-    var gmtIdx = time.indexOf('GMT')
-    return time.substring(gmtIdx, time.length)
-  }
-
-  Sales.prototype.skuTimes = function (skus) {
-    var self = this, skuTimes = skus.map(sku => self.time(sku))
-    return Array.from(new Set(skuTimes))
-  }
-
-  Sales.prototype.skuDays = function (skus) {
-    var self = this, days = skus.map(sku => self.day(sku))
-    return Array.from(new Set(days))
-  }
-
-  Sales.prototype.time = function (sku) { return `time-${+new Date(sku['time'])}` }
-
-  Sales.prototype.day = function (sku) {
-    var date = new Date(sku['time']).getDate()
-    var month = new Date(sku['time']).getMonth()
-    var mnth = this.months[month]
-    return `day-${mnth.toLowerCase()}-${date}`
-  }
-
-  Sales.prototype.updateGroups = function (skus, groupKeys, type) {
-    var groups = {}, self = this, fn = (type === 'time') ? self.time : self.day
-    groupKeys.forEach(groupKey => {
-      groups[groupKey] = skus.filter(sku => fn.call(self, sku) === groupKey)
-    })
-    return groups
-  }
-
-  Sales.prototype.groupedSKUs = function (skus, groupKeys, type) { return this.updateGroups(skus, groupKeys, type) }
-
-  Sales.prototype.endTime = function (time) {
-    var date = new Date(time)
-    var mt = this.months[date.getMonth()], dt = date.getDate(), yr = date.getFullYear()
-    var ct = this.carryTime(date, this.extraHours, this.extraMinutes)
-    return `${mt} ${dt} ${yr} ${ct} ${this.GMT}`
-  }
-
-  Sales.prototype.carryTime = function (date, exHrs, exMns) {
-    var hr = date.getHours(), mn = date.getMinutes(), sc = date.getSeconds()
-    var totalHours = hr + exHrs, totalMinutes = mn + exMns
-    if (totalMinutes > 59) { totalMinutes %= 60; totalHours++ }
-    return `${this.pad(totalHours)}:${this.pad(totalMinutes)}:${this.pad(sc)}`
-  }
-
-  Sales.prototype.pad = function (time) { return ('0' + time).slice(-2) }
-
-  Sales.prototype.setState = function (skus) {
-    var keys = Object.keys(skus)
-    var firstTime = skus[keys[0]][0]['time']
-    var firstStartTime = new Date(firstTime)
-    var lastIdx = keys.length - 1
-    var lastSKUS = skus[keys[lastIdx]]
-    var lastTime = lastSKUS[lastSKUS.length - 1]['time']
-    var lastEndTime = new Date(this.endTime(lastTime))
-
-    if (+this.now < +firstStartTime) { this.b41stSession(keys) }
-    else if (+this.now > +lastEndTime) { this.aftrLastSession() }
-    else { this.inAndBtwSessions(skus) }
-  }
-
-  Sales.prototype.b41stSession = function (keys) {
-    console.log('before first session')
-    var nextTime = this.nextTime(keys)
-    this.setCountDownTxt(nextTime)
-    this.initializeClock('clockdiv', nextTime['time'])
-  }
-
-  Sales.prototype.setCountDownTxt = function (nextTime) {
-    var countDownTxt = document.querySelector('#clockdiv>h3')
-    if (nextTime['type'] === 'start') { countDownTxt.textContent = 'next sale starts in' }
-    else { countDownTxt.textContent = 'current sale ends in' }
-  }
-
-  Sales.prototype.aftrLastSession = function () {
-    var counts = document.querySelectorAll('.frame-wrap>div>div>div:first-of-type')
-    counts.forEach(count => count.setAttribute('style', 'display: none'))
-  }
-
-  Sales.prototype.inAndBtwSessions = function (skus) {
-    console.log('in and between session')
-    var keys = Object.keys(skus), isInSess = false, liveTime = -1
-    for (var x = 0; x < keys.length; x++) {
-      var keySKUs = skus[keys[x]]; isInSess = this.isInSession(keySKUs)
-      if (isInSess['flag']) { liveTime = isInSess['time']; break }
-    }
-    (isInSess['flag']) ? this.inSession(liveTime) : this.btwSession()
-    var nextTime = this.nextTime(keys)
-    this.setCountDownTxt(nextTime)
-    this.initializeClock('clockdiv', nextTime['time'])
-  }
-
-  Sales.prototype.nextTime = function (keys) {
-    var self = this, timesEndTimes = [], nextTime = +new Date()
-    var times = keys.map(key => parseInt(key.split('-')[1]))
-    for (var i = 0; i < times.length; i++) {
-      timesEndTimes.push({ type: 'start', time: times[i] })
-      var endTime = +new Date(this.endTime(times[i]))
-      timesEndTimes.push({ type: 'end', time: endTime })
-    }
-    console.log('timesEndTimes', timesEndTimes)
-    var comingTimes = timesEndTimes.filter($tme => +self.now < $tme['time'])
-    if (times.length > 0) { nextTime = comingTimes[0] }
-    return nextTime
-  }
-
-  Sales.prototype.isInSession = function (keySKUs) {
-    var flag = false, time = -1
-    for (var i = 0; i < keySKUs.length; i++) {
-      var startTime = new Date(keySKUs[i]['time'])
-      var endTime = new Date(this.endTime(keySKUs[i]['time']))
-      if (+this.now >= +startTime && +this.now < +endTime) { flag = true; time = +new Date(keySKUs[i]['time']); break; }
-    }
-    return { flag, time }
-  }
-
-  Sales.prototype.inSession = function (liveTime) {
-    var sku = document.getElementById(`time-${liveTime}`)
-    sku.classList.add('-live')
-    var time = sku.querySelector('.-dt.-time')
-    time.textContent = 'live now'
-  }
-
-  Sales.prototype.btwSession = function () { console.log('between session') }
-
-  Sales.prototype.buildTimeSKUS = function (marked) {
-    var self = this
-    Object.keys(marked).forEach(key => {
-      var keyPieces = key.split('-')
-      var time = (keyPieces.length == 3) ? keyPieces[2] : keyPieces[1]
-      var timeFormat = new Date(parseInt(time))
-      var sku = self.create('div', { class: '-sku inline-block', id: key }, '', '')
-      var top = self.create('div', { class: '-top' }, '', '')
-      var dateTime = self.create('div', { class: '-date_time pos-rel' }, '', '')
-      var date = self.create('div', { class: '-dt -date pos-abs' }, '', self.dateAndTime(timeFormat)['date'])
-      var time = self.create('div', { class: '-dt -time pos-abs' }, '', self.dateAndTime(timeFormat)['time'])
-
-      var nameDescUnits = self.create('div', { class: '-name-desc_units inline-block' }, '', '')
-      var name = self.create('div', { class: '-name' }, '', marked[key][0]['name'])
-      var descUnits = self.create('div', { class: '-desc_units' }, '', '')
-      var desc = self.create('div', { class: '-desc inline-block' }, '', marked[key][0]['desc'])
-      var units = self.create('div', { class: '-units inline-block' }, '', `${marked[key][0]['units']} units`)
-
-      var middle = self.create('a', { href: self.LIVE_LINK, class: '-middle pos-rel' }, '', '')
-      var shadow = self.create('div', { class: '-shadow pos-abs' }, '', '')
-      var iwClass = '';
-      (keyPieces.length == 3) ? iwClass = '-img -oos' : iwClass = '-img'
-      var imgWrap = self.create('div', { class: iwClass }, '', '')
-      marked[key].forEach((sku, idx) => {
-        var img = self.create('img', {
-          src: `${self.BOB_IMG_LINK}/${sku['img']}`,
-          alt: 'sku_img', class: `img-${idx}`,
-          class: (idx === 0) ? '-img_el active' : '-img_el'
-        }, '', '')
-        imgWrap.appendChild(img)
-      })
-
-      var bottom = self.create('div', { class: '-bottom' }, '', '')
-      var prices = self.create('div', { class: '-prices inline-block' }, '', '')
-      var oldPrice = self.create('div', { class: '-old_price' }, '', `₦${marked[key][0]['oldPrice']}`)
-      var newPrice = self.create('div', { class: '-new_price' }, '', `₦${marked[key][0]['newPrice']}`)
-      var controls = self.create('div', { class: '-controls pos-rel' }, '', '')
-      var prev = self.create('div', { class: '-control -prev pos-abs' }, '', '')
-      var next = self.create('div', { class: '-control -next pos-abs' }, '', '')
-      var count = self.create('div', { class: '-control -count pos-abs' }, '', '')
-      var countSpan = self.create('span', '', '', '15/15')
-
-      count.appendChild(countSpan)
-
-      self.appendMany2One(dateTime, [date, time])
-      self.appendMany2One(descUnits, [desc, units])
-      self.appendMany2One(nameDescUnits, [name, descUnits])
-      self.appendMany2One(top, [dateTime, nameDescUnits])
-      self.appendMany2One(middle, [shadow, imgWrap])
-      self.appendMany2One(prices, [oldPrice, newPrice])
-      self.appendMany2One(controls, [prev, next, count])
-      self.appendMany2One(bottom, [prices, controls])
-      self.appendMany2One(sku, [top, middle, bottom])
-      self.skusParent.appendChild(sku)
-    })
-  }
-
-  Sales.prototype.append = function (parents, kids) { parents.forEach((parent, idx) => parent.appendChild(kids[idx])) }
-
-  Sales.prototype.appendMany2One = function (one, many) { many.forEach(item => one.appendChild(item)) }
-
-  Sales.prototype.markAsSold = function (grouped) {
-    var self = this, outOfStockSKUs = []
-    Object.keys(grouped).forEach(key => {
-      var timeTxtNo = key.split('-'), time = parseInt(timeTxtNo[1])
-      var endTime = self.endTime(time)
-      if (+self.now >= +new Date(endTime)) {
-        var outOfStockSKU = document.getElementById(`time-${timeTxtNo[1]}`)
-        outOfStockSKU.classList.add('-oos')
-        outOfStockSKUs.push(outOfStockSKU)
-        self.skusParent.removeChild(outOfStockSKU)
-      }
-    })
-    outOfStockSKUs.forEach(sku => self.skusParent.appendChild(sku))
-  }
-
-  Sales.prototype.create = function (tag, attributes, styles, textContent) {
-    var element = document.createElement(tag);
-    Object.keys(attributes).forEach(key => element.setAttribute(key, attributes[key]));
-    Object.keys(styles).forEach(key => element.setAttribute(key, styles[key]));
-    textContent ? element.innerHTML = textContent : "";
-    return element;
-  }
-
-  Sales.prototype.preppedDate = function (date) {
-    return `${this.daysOfWeek[date.getDay()]} ${this.months[date.getMonth()].substr(0, 3)} ${date.getDate()}`
-  }
-
-  Sales.prototype.twelveHrFormat = function (hr, min) {
-    if (hr === 12) { return this.pad(hr) + ":" + this.pad(min) + " PM"; }
-    else if (hr > 12) { return this.pad((hr - 12)) + ":" + this.pad(min) + " PM"; }
-    else if (hr === 0) { return 12 + ":" + this.pad(min) + " AM" }
-    else { return this.pad(hr) + ":" + this.pad(min) + " AM"; }
-  }
-
-  Sales.prototype.dateAndTime = function (date) {
-    return {
-      date: this.preppedDate(date),
-      time: this.twelveHrFormat(date.getHours(), date.getMinutes())
-    }
-  }
-
-  Sales.prototype.initializeClock = function (id, endTime) {
-    var clock = document.getElementById(id), self = this
-    var daysSpan = clock.querySelector('.days')
-    var hoursSpan = clock.querySelector('.hours')
-    var minutesSpan = clock.querySelector('.minutes')
-    var secondsSpan = clock.querySelector('.seconds')
-    var timeInterval = setInterval(updateClock, 1000)
-
-    function updateClock() {
-      var t = self.getTimeRemaining(endTime)
-      daysSpan.innerHTML = t['days']
-      hoursSpan.innerHTML = ('0' + t['hours']).slice(-2)
-      minutesSpan.innerHTML = ('0' + t['minutes']).slice(-2)
-      secondsSpan.innerHTML = ('0' + t['seconds']).slice(-2)
-      if (t['total'] <= 0) { clearInterval(timeInterval) }
-    }
-  }
-
-  Sales.prototype.getTimeRemaining = function (endTime) {
-    var t = +new Date(endTime) - (+new Date())
-    var seconds = Math.floor((t / 1000) % 60)
-    var minutes = Math.floor((t / 1000 / 60) % 60)
-    var hours = Math.floor((t / (1000 * 60 * 60)) % 24)
-    var days = Math.floor(t / (1000 * 60 * 60 * 24))
-
-    if (days == 0 && hours == 0 && minutes == 0 && seconds == 0) { setTimeout(() => { window.location.reload(true) }, 1000) }
-    return { total: t, days, hours, minutes, seconds }
-  }
-
-  Sales.prototype.addListeners = function (groupedSKUs) {
-    var self = this
-    var skus = document.querySelectorAll('.-sku')
-    skus.forEach(sku => {
-      var images = sku.querySelectorAll('.-img_el')
-      var countEl = sku.querySelector('.-count>span')
-      countEl.textContent = `1 / ${images.length}`
-      var prevBtn = sku.querySelector('.-prev')
-      var nextBtn = sku.querySelector('.-next')
-      if (images.length == 1) {
-        prevBtn.setAttribute('style', 'display: none')
-        nextBtn.setAttribute('style', 'display: none')
-      }
-
-      sku.addEventListener('mouseover', function () { self.stopTimer() })
-      sku.addEventListener('mouseout', function () { self.startTimer(groupedSKUs) })
-
-      prevBtn.addEventListener('click', function () {
-        self.updateSKU(sku, 'prev', groupedSKUs)
-      })
-
-      nextBtn.addEventListener('click', function () {
-        self.updateSKU(sku, 'next', groupedSKUs)
-      })
-    })
-  }
-
-  Sales.prototype.updateSKU = function (sku, type, groupedSKUs) {
-    var images = sku.querySelectorAll('.-img_el')
-    var countEl = sku.querySelector('.-count>span')
-    images.forEach(img => img.classList.remove('active'))
-    var currentIdx = this.getIdx(countEl)
-    var idx = this.updateIdx(currentIdx, images, countEl, type)
-    this.updateInfo(sku, groupedSKUs, idx)
-    images[idx].classList.add('active')
-  }
-
-  Sales.prototype.updateInfo = function (sku, groupedSKUs, idx) {
-    var skuId = sku.getAttribute('id')
-    var nextSKUData = groupedSKUs[skuId][idx]
-    sku.querySelector('.-name').textContent = nextSKUData['name']
-    sku.querySelector('.-desc').textContent = nextSKUData['desc']
-    sku.querySelector('.-units').textContent = `${nextSKUData['units']} units`
-    sku.querySelector('.-old_price').textContent = `₦${nextSKUData['oldPrice']}`
-    sku.querySelector('.-new_price').textContent = `₦${nextSKUData['newPrice']}`
-  }
-
-  Sales.prototype.getIdx = function (el) { return el.textContent.split('/')[0].trim() }
-
-  Sales.prototype.updateIdx = function (currentIdx, images, countEl, type) {
-    type === 'next' ? currentIdx++ : currentIdx--
-    if (currentIdx > images.length) { currentIdx = 1 }
-    if (currentIdx < 1) { currentIdx = images.length }
-    countEl.textContent = `${currentIdx} / ${images.length}`
-    return currentIdx - 1
-  }
-
-  Sales.prototype.startTimer = function (groupedSKUs) {
-    var self = this, skus = document.querySelectorAll('.-sku')
-    this.interval = setInterval(() => {
-      skus
-        .forEach(sku => { self.updateSKU(sku, 'next', groupedSKUs) })
-    }, 2500);
-  }
-
-  Sales.prototype.stopTimer = function () { clearInterval(this.interval) }
-
-  var Main = function () {
-    this.sales = null
-  }
-
-  Main.prototype.init = function () {
-    this.sales = new Sales()
-    var sortedSKUS = this.sales.qSort(this.sales.rawSKUs)
-    var expandedSKUS = this.sales.expand(sortedSKUS)
-    var timeKeys = this.sales.skuTimes(expandedSKUS)
-    var groupedSKUs = this.sales.groupedSKUs(expandedSKUS, timeKeys, 'time')
-    this.sales.buildTimeSKUS(groupedSKUs)
-    this.sales.setState(groupedSKUs)
-    this.sales.addListeners(groupedSKUs)
-    var markedSKUS = this.sales.markAsSold(groupedSKUs)
-    this.sales.startTimer(groupedSKUs)
-    console.log('markedSKUS', markedSKUS)
-  }
-
-  var show = document.querySelector('.md-show');
-  var mask = document.querySelector('.md-mask');
-  var close = document.querySelector('.md-close')
-
-  show.addEventListener('click', function () {
-    mask.classList.add('md-active');
-  })
-
-  function closeModal() {
-    mask.classList.remove('md-active')
-  }
-
-  close.addEventListener('click', closeModal);
-  mask.addEventListener('click', closeModal);
-
-  var main = new Main()
-  main.init()
-</script>
