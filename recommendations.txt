@@ -1,0 +1,5 @@
+Michael
+-------
+1. instagram long press to pause, when you release it should continue playing
+2. on mobile use arrows instead of text
+3. 

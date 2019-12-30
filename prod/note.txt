@@ -1,0 +1,6 @@
+. all skus slide in sync
+. there should be a play/pause button on top all skus to play and pause the skus in sync
+. when a particular sku button is clicked, stop all sku timer interval
+. if the mouse is not over any skus after 5 seconds, resume the interval
+
+. reorder raw skus
