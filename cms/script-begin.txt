@@ -1,0 +1,32 @@
+<script>
+var Variables = function () {
+  this.now = new Date()
+  this.GMT = 'GMT+0100'
+  this.LIVE_LINK = '/mobile-apps/'
+  this.BOB_IMG_LINK = 'https://ng.jumia.is/cms/8-18/christmas/2019/flash-sales'
+  this.extraHours = 0
+  this.extraMinutes = 59
+  this.rawSKUs = [
+    "Samsung Galaxy A30s|4GB/64GB|December 12 2019 12:00:00 GMT+0100|₦80,000|₦69,990|100|samsung-galaxy-a30s_.jpg",
+    "Apple iPhone 11|4GB/64GB|December 12 2019 12:00:00 GMT+0100|₦350,000|₦249,000|10|iphone-11.jpg",
+    "Big Bull Rice|5kg + Cubes|December 12 2019 12:00:00 GMT+0100|₦3,500|₦1,990|100|bigbull-rice-cubes.jpg",
+    "Nexus Blender|1.5ltrs|December 12 2019 12:00:00 GMT+0100|₦7,500|₦4,500|100|nexus-blender-1-5ltrs.jpg",
+    "Tomato King Rice|50kg|December 12 2019 12:00:00 GMT+0100|₦25,000|₦14,990|100|tomato-king-rice-50kg.jpg",
+    "Midea Microwave|20ltrs|December 12 2019 12:00:00 GMT+0100|₦22,000|₦13,500|100|midea-microwave-20ltrs.jpg",
+    "Lloyd Home Theatre|Bluetooth|December 12 2019 12:00:00 GMT+0100|₦30,000|₦12,500|100|lloyd-home-theatre.jpg",
+    "Canvas Shoes|Men|December 12 2019 12:00:00 GMT+0100|₦7,500|₦2,500|100|mens-canvas-last.jpg",
+    "King Oil|5ltrs|December 12 2019 12:00:00 GMT+0100|₦3,500|₦2,150|100|devon-king-oil.jpg",
+    ]
+  this.skus = []
+  this.skusEl = document.querySelector('.-skus.-fs')
+  this.months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ]
+  this.daysOfWeek = [
+    'sunday', 'monday', 'tuesday',
+    'wednesday', 'thursday', 'friday',
+    'saturday'
+  ]
+}
+</script>

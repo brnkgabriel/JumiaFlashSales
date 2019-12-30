@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.wrapper {
+  padding-top: 41px;
+}
+
+.menu {
+  background-color: #333;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.menu__list {
+  text-align: center
+}
+
+.menu__item {
+  list-style-type: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.menu__link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+.section {
+  text-align: center;
+  font-size: 32px;
+  min-height: 100vh;
+  line-height: 100vh;
+  border-bottom: 1px solid #333
+}

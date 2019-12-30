@@ -1,0 +1,98 @@
+.links {
+	// position: absolute;
+	// top: 0;
+	// left: 50%;
+	// transform: translate(-50%, 0);
+	margin-top: 0.5rem;
+	margin-bottom: 2rem;
+	
+	a {
+		font-size: 1.4rem;
+		color: lightblue;
+		text-decoration: none;
+		transition: color .5s ease, border-bottom .5s ease;
+		border-bottom: 2px solid transparent;	
+		
+		&:hover {
+			color: yellow;
+			border-bottom: 2px solid yellow;
+		}
+		
+		&:not(:last-of-type) {
+			margin-right: 2rem;
+		}
+	}
+}
+
+.longText {
+	& > p:last-of-type:after {
+		content : '...or not ;)';
+	}
+}
+
+.anchor {
+	color: lime;
+	font-weight: bold;
+}
+
+p {
+	margin: 0;
+	text-align: center;
+}
+
+//-------------------- Unimportant css rules --------------------
+$transitionDuration: 0.3s;
+
+.container {
+	// height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.filler {
+	background-color : #0B3553;
+	border: 1px solid #022238;
+	opacity : 0.80;
+	height: 25vh;
+	width: 99vw; //FIXME: 100vw make a scrollbar appear :'(
+}
+
+body {
+	background: #333; //#022238
+	color: white;
+	font-family: "Open sans", sans-serif;
+	font-weight: 100;
+	font-size: 1rem;
+}
+
+a.button {
+	// color: white;
+	color: yellow;
+	text-decoration: none;
+	transition: color $transitionDuration ease;
+	
+	&:focus {
+		outline: none;
+	}
+	
+	&:hover {
+		// color: deeppink;
+		color: lime;
+	}
+}
+
+.button2 {
+	background-color : deeppink;
+	color            : white;
+	border           : 1px solid red;
+	border-radius    : 2px;
+	height           : 30px;
+	cursor           : pointer;
+	outline          : none;
+	
+	&:focus, &:active {
+		outline : none;
+	}
+}

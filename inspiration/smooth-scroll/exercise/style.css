@@ -1,0 +1,86 @@
+.links {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.links a {
+  font-size: 1.4rem;
+  color: lightblue;
+  text-decoration: none;
+  transition: color .5s ease, border-bottom .5s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.links a:hover {
+  color: yellow;
+  border-bottom: 2px solid yellow;
+}
+
+.links a:not(:last-of-type) {
+  margin-right: 2rem;
+}
+
+.longText > p:last-of-type::after {
+  content: '...or not ;)';
+}
+
+.anchor {
+  color: lime;
+  font-weight: bold;
+}
+
+p {
+  margin: 0;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.filler {
+  background-color: #0B3553;
+  border: 1px solid #022238;
+  opacity: 0.80;
+  height: 25vh;
+  width: 99vw;
+}
+
+body {
+  background: #333;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 100;
+  font-size: 1rem;
+}
+
+a.button {
+  color: yellow;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a.button:focus {
+  outline: none;
+}
+
+a.button:hover {
+  color: lime
+}
+
+.button2 {
+  background-color: deeppink;
+  color: white;
+  border: 1px solid red;
+  border-radius: 2px;
+  height: 30px;
+  cursor: pointer;
+  outline: none;
+}
+
+.button2:focus, .button2:active {
+  outline: none;
+}
