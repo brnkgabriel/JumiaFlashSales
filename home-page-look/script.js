@@ -1,3 +1,5 @@
+// TODO: Factor a scenario when other skus are oos and 1 is still live on a row
+
 var FlipClock = function (options) {
   this.tickInterval = false;
   this.digitSelectors = [];
@@ -11,7 +13,7 @@ FlipClock.prototype.init = function () {
     clearInterval(this.tickInterval);
     this.tickInterval = false;
   }
-  
+
   this.appendMarkupToContainer();
   this.setDimensions();
   this.start();
@@ -20,7 +22,7 @@ FlipClock.prototype.init = function () {
 FlipClock.prototype.setDimensions = function () {
   var flipHeight = parseInt(this.options.containerElement.style.height)
   var flipWidth = flipHeight / 1.55;
-  
+
   var uls = document.querySelectorAll('ul.flip')
   uls.forEach(ul => {
     ul.style.width = flipWidth + 'px'
@@ -68,7 +70,7 @@ FlipClock.prototype.appendMarkupToContainer = function () {
       var faceSegmentElement = this.createFaceSegment(this.options.face[faceSegmentGroup].segments[i]);
 
       this.digitSelectors.push(this.options.face[faceSegmentGroup].segments[i].selector);
-      
+
       this.options.containerElement.appendChild(faceSegmentElement)
 
       faceSegmentElement.setAttribute('data-face-segment-group', faceSegmentGroup)
@@ -81,7 +83,7 @@ FlipClock.prototype.appendMarkupToContainer = function () {
 };
 
 FlipClock.prototype.createFaceSegment = function (faceSegment) {
-  
+
   var faceElement = document.createElement('ul')
   faceElement.className = 'flip ' + faceSegment.selector
 
@@ -108,7 +110,7 @@ FlipClock.prototype.createFaceDigit = function (digit) {
   return li
 };
 
-FlipClock.prototype.createDirection = function(direction, digitInnerFragment) {
+FlipClock.prototype.createDirection = function (direction, digitInnerFragment) {
   var el = document.createElement('div')
   el.className = direction
   el.innerHTML = digitInnerFragment
@@ -126,6 +128,8 @@ FlipClock.prototype.start = function () {
 };
 
 FlipClock.prototype.stop = function () {
+  // setTimeout(() => { window.location.reload(true) }, 1000)
+  window.location.reload(true)
   clearInterval(this.tickInterval);
 };
 
@@ -362,21 +366,24 @@ var Variables = function () {
   this.LIVE_LINK = '/mobile-apps/'
   this.BOB_IMG_LINK = 'https://ng.jumia.is/cms/8-18/christmas/2019/flash-sales'
   this.extraHours = 0
-  this.extraMinutes = 59
+  this.extraMinutes = 30
   this.rawSKUs = [
-    "Samsung Galaxy A30s|4GB/64GB|December 30 2019 00:10:00 GMT+0100|₦80,000|₦69,990|100|samsung-galaxy-a30s_.jpg",
-    "Apple iPhone 11|4GB/64GB|December 30 2019 00:10:00 GMT+0100|₦350,000|₦249,000|10|iphone-11.jpg",
-    "Big Bull Rice|5kg + Cubes|December 30 2019 00:10:00 GMT+0100|₦3,500|₦1,990|100|bigbull-rice-cubes.jpg",
-    "Nexus Blender|1.5ltrs|December 30 2019 00:10:00 GMT+0100|₦7,500|₦4,500|100|nexus-blender-1-5ltrs.jpg",
-    "Tomato King Rice|50kg|December 30 2019 00:10:00 GMT+0100|₦25,000|₦14,990|100|tomato-king-rice-50kg.jpg",
-    "Midea Microwave|20ltrs|December 30 2019 00:10:00 GMT+0100|₦22,000|₦13,500|100|midea-microwave-20ltrs.jpg",
-    "Lloyd Home Theatre|Bluetooth|December 30 2019 00:10:00 GMT+0100|₦30,000|₦12,500|100|lloyd-home-theatre.jpg",
-    "Canvas Shoes|Men|December 30 2019 00:10:00 GMT+0100|₦7,500|₦2,500|100|mens-canvas-last.jpg",
-    "Tomato King Rice|50kg|December 30 2019 00:10:00 GMT+0100|₦25,000|₦14,990|100|tomato-king-rice-50kg.jpg",
-    "Midea Microwave|20ltrs|December 30 2019 00:10:00 GMT+0100|₦22,000|₦13,500|100|midea-microwave-20ltrs.jpg",
-    "Lloyd Home Theatre|Bluetooth|December 30 2019 00:10:00 GMT+0100|₦30,000|₦12,500|100|lloyd-home-theatre.jpg",
-    "Canvas Shoes|Men|December 30 2019 00:10:00 GMT+0100|₦7,500|₦2,500|100|mens-canvas-last.jpg",
-    "King Oil|5ltrs|December 30 2019 00:10:00 GMT+0100|₦3,500|₦2,150|100|devon-king-oil.jpg",
+    "Samsung Galaxy A30s|4GB/64GB|December 30 2019 21:58:00 GMT+0100|₦80,000|₦69,990|100|samsung-galaxy-a30s_.jpg",
+    "Apple iPhone 11|4GB/64GB|December 30 2019 21:58:00 GMT+0100|₦350,000|₦249,000|10|iphone-11.jpg",
+    "Big Bull Rice|5kg + Cubes|December 30 2019 21:58:00 GMT+0100|₦3,500|₦1,990|100|bigbull-rice-cubes.jpg",
+    "Nexus Blender|1.5ltrs|December 30 2019 21:58:00 GMT+0100|₦7,500|₦4,500|100|nexus-blender-1-5ltrs.jpg",
+    "Tomato King Rice|50kg|December 30 2019 21:58:00 GMT+0100|₦25,000|₦14,990|100|tomato-king-rice-50kg.jpg",
+    "Midea Microwave|20ltrs|December 30 2019 21:58:00 GMT+0100|₦22,000|₦13,500|100|midea-microwave-20ltrs.jpg",
+    "Lloyd Home Theatre|Bluetooth|December 30 2019 21:58:00 GMT+0100|₦30,000|₦12,500|100|lloyd-home-theatre.jpg",
+    "Canvas Shoes|Men|December 30 2019 21:58:00 GMT+0100|₦7,500|₦2,500|100|mens-canvas-last.jpg",
+    "Tomato King Rice|50kg|December 30 2019 21:58:00 GMT+0100|₦25,000|₦14,990|100|tomato-king-rice-50kg.jpg",
+    "Midea Microwave|20ltrs|December 30 2019 21:58:00 GMT+0100|₦22,000|₦13,500|100|midea-microwave-20ltrs.jpg",
+    "Lloyd Home Theatre|Bluetooth|December 30 2019 21:58:00 GMT+0100|₦30,000|₦12,500|100|lloyd-home-theatre.jpg",
+    "Canvas Shoes|Men|December 30 2019 21:58:00 GMT+0100|₦7,500|₦2,500|100|mens-canvas-last.jpg",
+    "King Oil|5ltrs|December 30 2019 22:19:00 GMT+0100|₦3,500|₦2,150|100|devon-king-oil.jpg",
+    "King Oil|5ltrs|December 30 2019 23:19:00 GMT+0100|₦3,500|₦2,150|100|devon-king-oil.jpg",
+    "Lloyd Home Theatre|Bluetooth|December 30 2019 23:19:00 GMT+0100|₦30,000|₦12,500|100|lloyd-home-theatre.jpg",
+    "Samsung Galaxy A30s|4GB/64GB|January 12 2020 10:00:00 GMT+0100|₦80,000|₦69,990|100|samsung-galaxy-a30s_.jpg",
     "Samsung Galaxy A30s|4GB/64GB|January 12 2020 12:00:00 GMT+0100|₦80,000|₦69,990|100|samsung-galaxy-a30s_.jpg",
     "Apple iPhone 11|4GB/64GB|January 12 2020 12:00:00 GMT+0100|₦350,000|₦249,000|10|iphone-11.jpg",
     "Big Bull Rice|5kg + Cubes|January 12 2020 12:00:00 GMT+0100|₦3,500|₦1,990|100|bigbull-rice-cubes.jpg",
@@ -458,6 +465,9 @@ Sales.prototype.skuDay = function (time) {
   else if (date === 2) { dateTxt = `${date}nd` }
   else if (date === 3) { dateTxt = `${date}rd` }
   else { dateTxt = `${date}th` }
+  if (window.innerWidth < 481) {
+    return `${this.daysOfWeek[day].substr(0, 3)} <br/> ${this.months[month].substr(0,3)} ${dateTxt}`
+  }
   return `${this.daysOfWeek[day]} ${this.months[month]} ${dateTxt}`
 }
 
@@ -475,8 +485,8 @@ Sales.prototype.updateGroups = function (skus, groupKeys, type) {
 
 Sales.prototype.setAttributes = function (el, obj) { Object.keys(obj).forEach(key => el.setAttribute(key, obj[key])) }
 
-Sales.prototype.create = function (tag, attributes, styles, textContent) {
-  // var tag = props[0], attributes = props[1], styles = props[2], textContent = props[3]
+Sales.prototype.create = function (props) {
+  var tag = props[0], attributes = props[1], styles = props[2], textContent = props[3]
   var el = document.createElement(tag); this.setAttributes(el, attributes);
   this.setAttributes(el, styles); textContent ? el.innerHTML = textContent : ''
   return el
@@ -512,16 +522,24 @@ Sales.prototype.buildDaySKUS = function (marked) {
   var self = this, unique = +new Date('October 12 2020 12:00:00 GMT+0100')
   console.log('marked', marked)
   Object.keys(marked).forEach(key => {
+    console.log('key', key)
     var rowTime = marked[key][0]['time']
     var rowMilli = +new Date(rowTime);
-    var rowClass = (rowMilli === unique) ? `-sku_row -unique -sku_row-${rowMilli} pos-rel` : `-sku_row -sku_row-${rowMilli} pos-rel`
-    var skuRow = self.create('div', { class: rowClass, id: 'unique' }, '', '')
-    var skuDayTitle = self.create('div', { class: '-skuDay_title pos-rel' }, '', '')
-    var timeTxt = self.twelveHrForm(new Date(rowTime).getHours())
-    var skuDayTitleSpan = self.create('span', '', '', self.skuDay(rowTime) + ': ' + timeTxt)
-    var daySKUs = self.create('div', { class: '-day_skus' }, '', '')
-    var prev = self.create('div', { class: '-prev pos-abs' }, '', '')
-    var next = self.create('div', { class: '-next pos-abs' }, '', '')
+    var rowClass = (rowMilli === unique) ? `-sku_row -unique -sku_row-${key} pos-rel` : `-sku_row -sku_row-${key} pos-rel`
+    var rowProps = {
+      skuRow: ['div', { class: rowClass, id: 'unique' }, '', ''],
+      skuDayTitle: ['div', { class: '-skuDay_title pos-rel' }, '', ''],
+      skuDayTitleSpan: ['span', '', '', self.skuDay(rowTime)],
+      daySKUs: ['div', { class: '-day_skus' }, '', ''],
+      prev: ['div', { class: '-prev pos-abs' }, '', ''],
+      next: ['div', { class: '-next pos-abs' }, '', ''],
+    }
+    var skuRow = self.create(rowProps['skuRow'])
+    var skuDayTitle = self.create(rowProps['skuDayTitle'])
+    var skuDayTitleSpan = self.create(rowProps['skuDayTitleSpan'])
+    var daySKUs = self.create(rowProps['daySKUs'])
+    var prev = self.create(rowProps['prev'])
+    var next = self.create(rowProps['next'])
 
     next.addEventListener('click', function (e) {
       var start = daySKUs.scrollLeft + 50, end = daySKUs.scrollLeft + 300
@@ -531,39 +549,50 @@ Sales.prototype.buildDaySKUS = function (marked) {
       var start = daySKUs.scrollLeft - 50, end = daySKUs.scrollLeft - 300
       self.tween(start, end, 500, self.easeOutQuart, daySKUs);
     });
-
     marked[key].forEach(sku => {
       var skuClass = `-sku -sku_${+new Date(sku['time'])}`
-      var skuEl = self.create('div', { class: skuClass }, '', '')
-      var coming = self.create('span', { class: '-coming pos-abs fs' }, '', '')
-      coming.addEventListener('click', () => self.masksFS.classList.add('md-active'))
       var timeTxt = self.twelveHrForm(new Date(sku['time']).getHours())
-      var time = self.create('div', { class: '-time' }, '', timeTxt)
-      var appOnly = self.create('div', { class: '-app_only' }, '', 'APP ONLY')
       var liveLink = self.LIVE_LINK
       if (window.innerWidth < 481) {
         liveLink = 'https://aal4.adj.st/ng/camp/xmas-flash-sales?adjust_t=itk4eyn_9sytz8o&adjust_campaign=NG&adjust_adgroup=XMAS-19&adjust_creative=FS_PAGE&adjust_deeplink=jumia%3A%2F%2Fng%2Fcamp%2Fxmas-flash-sales&adjust_redirect=https%3A%2F%2Fwww.jumia.com.ng%2Fxmas-flash-sales'
       }
-      var imgWrap = self.create('a', {
-        class: '-img pos-rel',
-        href: liveLink,
-        target: '_blank'
-      }, '', '')
-      var shadow = self.create('div', { class: 'pos-abs -shadow' }, '', '')
-      var shadowSpan = self.create('span', { class: 'pos-abs' }, '', 'sold')
+      var skuProps = {
+        skuEl: ['div', { class: skuClass }, '', ''],
+        coming: ['span', { class: '-coming pos-abs fs' }, '', ''],
+        time: ['div', { class: '-time' }, '', timeTxt],
+        appOnly: ['div', { class: '-app_only' }, '', 'APP ONLY'],
+        imgWrap: ['a', { class: '-img pos-rel', href: liveLink, target: '_blank' }, '', ''],
+        shadow: ['div', { class: 'pos-abs -shadow' }, '', ''],
+        shadowSpan: ['span', { class: 'pos-abs' }, '', 'sold'],
+        img: ['img', { alt: 'sku_img', src: `${this.BOB_IMG_LINK}/${sku['img']}` }, '', ''],
+        details: ['div', { class: '-details' }, '', ''],
+        name: ['div', { class: '-name' }, '', sku['name']],
+        descUnits: ['div', { class: '-desc_units' }, '', ''],
+        desc: ['div', { class: '-du -desc' }, '', sku['desc']],
+        units: ['div', { class: '-du -units' }, '', `${sku['units']} units`],
+        prices: ['div', { class: '-prices' }, '', ''],
+        newPrice: ['div', { class: '-price -new_price' }, '', sku['newPrice']],
+        oldPrice: ['div', { class: '-price -old_price' }, '', sku['oldPrice']]
+      }
 
-      var img = self.create('img', {
-        alt: 'sku_img',
-        src: `${this.BOB_IMG_LINK}/${sku['img']}`
-      }, '', '')
-      var details = self.create('div', { class: '-details' }, '', '')
-      var name = self.create('div', { class: '-name' }, '', sku['name'])
-      var descUnits = self.create('div', { class: '-desc_units' }, '', '')
-      var desc = self.create('div', { class: '-du -desc' }, '', sku['desc'])
-      var units = self.create('div', { class: '-du -units' }, '', `${sku['units']} units`)
-      var prices = self.create('div', { class: '-prices' }, '', '')
-      var newPrice = self.create('div', { class: '-price -new_price' }, '', sku['newPrice'])
-      var oldPrice = self.create('div', { class: '-price -old_price' }, '', sku['oldPrice'])
+      var skuEl = self.create(skuProps['skuEl'])
+      var coming = self.create(skuProps['coming'])
+      coming.addEventListener('click', () => self.masksFS.classList.add('md-active'))
+      var time = self.create(skuProps['time'])
+      var appOnly = self.create(skuProps['appOnly'])
+      var imgWrap = self.create(skuProps['imgWrap'])
+      var shadow = self.create(skuProps['shadow'])
+      var shadowSpan = self.create(skuProps['shadowSpan'])
+
+      var img = self.create(skuProps['img'])
+      var details = self.create(skuProps['details'])
+      var name = self.create(skuProps['name'])
+      var descUnits = self.create(skuProps['descUnits'])
+      var desc = self.create(skuProps['desc'])
+      var units = self.create(skuProps['units'])
+      var prices = self.create(skuProps['prices'])
+      var newPrice = self.create(skuProps['newPrice'])
+      var oldPrice = self.create(skuProps['oldPrice'])
 
       shadow.appendChild(shadowSpan)
       self.appendMany2One([shadow, img], imgWrap)
@@ -604,13 +633,22 @@ Sales.prototype.setState = function (skus) {
 }
 
 Sales.prototype.clock = function () {
-  var clock = this.create('div', { class: 'clock pos-abs' }, '', '')
-  var countdown = this.create('div', { class: '-countdown' }, { style: 'height: 25px'}, '')
-  var timeMeasures = this.create('div', { class: '-time_measures' }, '', '')
-  var days = this.create('div', { class: '-time_measure -days' }, '', 'dy')
-  var hours = this.create('div', { class: '-time_measure -hours' }, '', 'hr')
-  var minutes = this.create('div', { class: '-time_measure -minutes' }, '', 'mn')
-  var seconds = this.create('div', { class: '-time_measure -seconds' }, '', 'sc')
+  var props = {
+    clock: ['div', { class: 'clock pos-abs' }, '', ''],
+    countdown: ['div', { class: '-countdown' }, { style: 'height: 40px' }, ''],
+    timeMeasures: ['div', { class: '-time_measures' }, { style: '' }, ''],
+    days: ['div', { class: '-time_measure -days' }, '', 'days'],
+    hours: ['div', { class: '-time_measure -hours' }, '', 'hrs'],
+    minutes: ['div', { class: '-time_measure -minutes' }, '', 'mins'],
+    seconds: ['div', { class: '-time_measure -seconds' }, '', 'secs']
+  }
+  var clock = this.create(props['clock'])
+  var countdown = this.create(props['countdown'])
+  var timeMeasures = this.create(props['timeMeasures'])
+  var days = this.create(props['days'])
+  var hours = this.create(props['hours'])
+  var minutes = this.create(props['minutes'])
+  var seconds = this.create(props['seconds'])
 
   this.appendMany2One([days, hours, minutes, seconds], timeMeasures)
   this.appendMany2One([countdown, timeMeasures], clock)
@@ -629,17 +667,23 @@ Sales.prototype.remainingTime = function (endTime) {
 
 Sales.prototype.setClock = function (skus) {
   var nextTime = this.nextTime(skus)
-  if (nextTime['type'] === 'start') {
-  var milliTime = +new Date(nextTime['time'])
-  var clockRow = document.querySelector('.-sku_row-' + milliTime)
-  var clockParent = clockRow.querySelector('.-skuDay_title')
-  clockParent.appendChild(this.clock())
   
+  var milliTime = +new Date(nextTime['time'])
+  // var rowTime = +new Date(nextTime['ref'])
+  var rowTime = this.day({time: nextTime['ref']})
+  console.log('rowTime', rowTime)
+  var clockRow = document.querySelector('.-sku_row-' + rowTime)
+  var clockParent = clockRow.querySelector('.-skuDay_title')
+  var notificationTxt = (nextTime['type'] == 'end') ? 'sale ends in:' : 'sale starts in:'
+  var notification = this.create(['div', { class: 'pos-abs -notification' }, '', notificationTxt])
+  // clockParent.appendChild(this.clock())
+  this.appendMany2One([notification, this.clock()], clockParent)
+
   var rt = this.remainingTime(milliTime)
   var startTime = Object.keys(rt)
-  .map(key => ('0' + rt[key]).slice(-2))
-  .join(':')
-  
+    .map(key => ('0' + rt[key]).slice(-2))
+    .join(':')
+
   var flip = new FlipClock({
     tickDuration: 1000,
     isCountdown: true,
@@ -655,7 +699,6 @@ Sales.prototype.setClock = function (skus) {
       seconds: { maxValue: 59 }
     }
   })
-  }
   // this.setCountDownTxt(nextTime)
   // this.initializeClock('clockdiv', nextTime['time'])
 }
@@ -715,6 +758,9 @@ Sales.prototype.setCountDownTxt = function (nextTime) {
 Sales.prototype.isInSession = function (keySKUs) {
   var obj = { flag: false, time: keySKUs[0]['time'] };
   for (var i = 0; i < keySKUs.length; i++) {
+    if (i == 13) {
+      console.log()
+    }
     var startTime = new Date(keySKUs[i]['time'])
     var endTime = new Date(this.endTime(keySKUs[i]['time']))
     if (+this.now >= +startTime && +this.now < +endTime) {
@@ -726,13 +772,14 @@ Sales.prototype.isInSession = function (keySKUs) {
 }
 
 Sales.prototype.inSession = function (time) {
-  // var liveSKUS = document.querySelectorAll(`.-sku_${+new Date(time)}`)
-  // liveSKUS.forEach(sku => {
-  //   var time = sku.querySelector('.-time')
-  //   time.textContent = 'LIVE NOW'
-  //   sku.classList.add('-live')
-  // })
-  var liveSKURow = document.querySelector(`.-sku_row-${+new Date(time)}`)
+  var liveSKUS = document.querySelectorAll(`.-sku_${+new Date(time)}`)
+  liveSKUS.forEach(sku => {
+    var time = sku.querySelector('.-time')
+    time.textContent = 'LIVE NOW'
+    sku.classList.add('-live')
+  })
+
+  var liveSKURow = liveSKUS[0].parentElement.parentElement
   liveSKURow.classList.add('-live')
 }
 
@@ -749,12 +796,12 @@ Sales.prototype.uniqueTimes = function (skus) {
 }
 
 Sales.prototype.nextTime = function (skus) {
-  var self = this, startEndTimes = [], nextTime = { type: 'over', time: new Date() }
+  var self = this, startEndTimes = [], nextTime = { type: 'over', time: new Date(), ref: new Date() }
   var uniqueTimes = this.uniqueTimes(skus)
   uniqueTimes.forEach(time => {
-    startEndTimes.push({ type: 'start', time })
+    startEndTimes.push({ type: 'start', time, ref: time })
     var endTime = this.endTime(time)
-    startEndTimes.push({ type: 'end', time: endTime })
+    startEndTimes.push({ type: 'end', time: endTime, ref: time })
   })
   var comingTimes = startEndTimes
     .filter(tme => +self.now < +new Date(tme['time']))
@@ -803,7 +850,7 @@ Sales.prototype.markAsSold = function (grouped) {
 
 Sales.prototype.mark = function (oosSelector) {
   var oosSKUsEls = document.querySelectorAll(oosSelector)
-  var parent = null , oosSKUs = []
+  var parent = null, oosSKUs = []
   oosSKUsEls.forEach(sku => {
     sku.classList.add('-oos')
     oosSKUs.push(sku)
@@ -838,6 +885,7 @@ Main.prototype.init = function () {
   this.sales.setState(groupedSKUS)
 }
 
+// Modal Script
 var shows = document.querySelectorAll('.md-show');
 var masks = document.querySelectorAll('.md-mask');
 var closes = document.querySelectorAll('.md-close');
@@ -860,509 +908,21 @@ masks.forEach(mask => {
   mask.addEventListener('click', () => closeModal(mask));
 })
 
+// Main Script
 var main = new Main()
 main.init()
 
-// ************* CLOCK *****************
 
-/**
- * FlipClock
- * @param options
- * @constructor
- */
-FlipClock = function (options) {
-  this.tickInterval = false;
-  this.digitSelectors = [];
-  this.options = this.createConfig(options);
-
-  this.init();
-};
-
-/**
- * returns merged config based on passed config + default config
- * @param options - config object
- * @returns options merged config objects
- */
-FlipClock.prototype.createConfig = function (options) {
-  return $.extend({}, this.getDefaultConfig(), options);
-};
-
-/**
- * returns default config object
- */
-FlipClock.prototype.getDefaultConfig = function () {
-  return {
-    tickDuration: 1000,
-    isCountdown: false,
-    startTime: '23:59:51',
-    maxTime: '23:59:59',
-    minTime: '00:00:00',
-    containerElement: document.querySelector('.container'),
-    segmentSelectorPrefix: 'flipclock-',
-    face: {
-      hours: {
-        maxValue: 23
-      },
-      minutes: {
-        maxValue: 59
-      },
-      seconds: {
-        maxValue: 59
-      }
-    }
-  };
-};
-
-/**
- * check browser feature support
- */
-FlipClock.prototype.initFeatureDetection = function () {
-  $.support.transition = (function () {
-    var thisBody = document.body || document.documentElement,
-      thisStyle = thisBody.style,
-      support = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
-    return support;
-  })();
-};
-
-/**
- * return browser support for given feature
- * @param feature
- * @returns {*}
- */
-FlipClock.prototype.isFeatureSupported = function (feature) {
-  if (feature && typeof $.support !== undefined && typeof $.support[feature] !== undefined) {
-    return $.support[feature];
-  }
-
-  return false;
-};
-
-/**
- * init
- */
-FlipClock.prototype.init = function () {
-  this.options.containerElement.empty();
-
-  if (this.tickInterval !== false) {
-    clearInterval(this.tickInterval);
-    this.tickInterval = false;
-  }
-
-  this.appendMarkupToContainer();
-  this.setDimensions();
-
-  this.setupFallbacks();
-
-  this.start();
-};
-
-/**
- * setupFallbacks
- */
-FlipClock.prototype.setupFallbacks = function () {
-  this.initFeatureDetection();
-
-  if (this.isFeatureSupported('transition')) {
-    $('ul.flip li:first-child', this.options.containerElement).css("z-index", 2);
-  } else {
-    // < IE9 can't do css animations (@keyframe) - need to fix z-index here since we're setting z-indices inside the keyframe-steps
-    $('ul.flip li:first-child', this.options.containerElement).css("z-index", 3);
-
-    // < IE9 doesn't understand nth-child css selector => fallback class that has to be addressed via css separatly
-    $('ul.flip:nth-child(2n+2):not(:last-child)', this.options.containerElement).addClass('nth-child-2np2-notlast');
-  }
-};
-
-/**
- * Sets digit dimensions based on its containers height
- */
-FlipClock.prototype.setDimensions = function () {
-  var flipHeight = this.options.containerElement.height(),
-    flipWidth = flipHeight / 1.55;
-
-  $('ul.flip', this.options.containerElement).css({
-    width: flipWidth,
-    fontSize: (flipHeight - 10) + 'px'
-  }).find('li').css({
-    lineHeight: (flipHeight) + 'px'
-  });
-};
-
-/**
- * Creates segments out of 'digits', calculates ticks per digit based on segment maxValue
- * @param faceSegmentGroupName
- * @returns {Array}
- */
-FlipClock.prototype.createSegment = function (faceSegmentGroupName) {
-  var faceSegmentGroup = this.options.face[faceSegmentGroupName],
-    segmentSelectorAddons = ['-ten', '-one'],
-    rounded = Math.ceil(faceSegmentGroup.maxValue / 10),
-    segment = [];
-
-  if (faceSegmentGroup.maxValue / 10 > 1) {
-    segment = [
-      {
-        selector: this.options.segmentSelectorPrefix + faceSegmentGroupName + segmentSelectorAddons[0],
-        ticks: rounded
-      }, {
-        selector: this.options.segmentSelectorPrefix + faceSegmentGroupName + segmentSelectorAddons[1],
-        ticks: 10
-      }
-    ];
-  } else {
-    segment = [
-      {
-        selector: this.options.segmentSelectorPrefix + faceSegmentGroupName + segmentSelectorAddons[1],
-        ticks: 10
-      }
-    ]
-  }
-
-  return segment;
-};
-
-/**
- * Appends the markup for each digit to the container
- */
-FlipClock.prototype.appendMarkupToContainer = function () {
-  var baseZIndex = 0;
-
-  for (var faceSegmentGroup in this.options.face) {
-    this.options.face[faceSegmentGroup].segments = this.createSegment(faceSegmentGroup);
-
-    for (var i = 0; i < this.options.face[faceSegmentGroup].segments.length; i++) {
-      var faceSegmentElement = this.createFaceSegment(this.options.face[faceSegmentGroup].segments[i]);
-
-      this.digitSelectors.push(this.options.face[faceSegmentGroup].segments[i].selector);
-      this.options.containerElement.append(faceSegmentElement);
-
-      // assign common data-attribute to segments of the same group
-      faceSegmentElement.data('face-segment-group', faceSegmentGroup);
-      faceSegmentElement.addClass(faceSegmentGroup);
-      faceSegmentElement.css("z-index", baseZIndex++);
-    }
-  }
-
-  this.digitSelectors.reverse();
-
-  //    var self = this;
-  //    $(document).on('keyup', function(e) {
-  //        if(e.keyCode === 13) {
-  //            self.stop();
-  //        }
-  //    });
-};
-
-/**
- * Creates face segments
- * @param faceSegment
- * @returns {*|jQuery|HTMLElement}
- */
-FlipClock.prototype.createFaceSegment = function (faceSegment) {
-  var faceElement = $('<ul>', {
-    "class": "flip " + faceSegment.selector
-  });
-
-  for (var i = 0; i < faceSegment.ticks; i++) {
-    var digit = i;
-
-    faceElement.append(this.createFaceDigit(digit));
-  }
-
-  return faceElement;
-};
-
-/**
- * Creates digit markup
- * @param digit
- * @returns {string}
- */
-FlipClock.prototype.createFaceDigit = function (digit) {
-  var digitInnerFragment = '<div class="shadow"></div><div class="inn">' + digit + '</div>';
-
-  return '<li data-digit=' + digit + ' ><span>' +
-    '<div class="up">' + digitInnerFragment + '</div>' +
-    '<div class="down">' + digitInnerFragment + '</div>' +
-    '</span></li>';
-};
-
-/**
- * Starts the clock
- */
-FlipClock.prototype.start = function () {
-  this.setToTime(this.options.startTime);
-
-  var self = this;
-
-  this.tickInterval = setInterval(function () {
-    self.tick();
-  }, this.options.tickDuration);
-};
-
-/**
- * Stops the Clock after the current interval is finished
- */
-FlipClock.prototype.stop = function () {
-  clearInterval(this.tickInterval);
-};
-
-/**
- * Resets to 00:00:00....
- * needed when using this as an actual clock - e.g. can reset to 0 after 23:59:59
- */
-FlipClock.prototype.resetDigits = function () {
-  this.options.containerElement.removeClass('play');
-
-  for (var i = 0; i < this.digitSelectors.length; i++) {
-    var active = $(this.getDigitSelectorByIndex(i) + ".current", this.options.containerElement),
-      all = $(this.getDigitSelectorByIndex(i), this.options.containerElement),
-      first = $(this.getDigitSelectorByIndex(i) + ":first-child", this.options.containerElement);
-
-    all.eq(0).addClass("clockFix");
-    all.removeClass("current");
-
-    first.addClass("current");
-
-    all.removeClass("previous");
-    active.addClass("previous");
-  }
-
-  this.options.containerElement.addClass('play');
-};
-
-/**
- * Sets the clock to a time based on passed string
- * @param time {string} 00:00:00...
- */
-FlipClock.prototype.setToTime = function (time) {
-  var timeArray = time.replace(/:/g, '').split('').reverse();
-
-  for (var i = 0; i < this.digitSelectors.length; i++) {
-    var digit = $(this.getDigitSelectorByIndex(i), this.options.containerElement).eq(parseInt(timeArray[i]));
-
-    this.options.containerElement.removeClass('play');
-
-    digit.addClass("current");
-    this.options.containerElement.addClass('play');
-  }
-};
-
-/**
- * Set Segment to its maximum value
- * @param segmentGroupName
- */
-FlipClock.prototype.setFaceSegmentGroupMaxValue = function (segmentGroupName) {
-  var self = this;
-  var group = this.getFaceSegmentGroupDom(segmentGroupName);
-
-  group.each(function (idx) {
-    self.options.containerElement.removeClass('play');
-
-    var maxValue = self.options.face[segmentGroupName].maxValue.toString().split('');
-
-    $(this).find('li.current').removeClass('current');
-    $(this).find('li[data-digit="' + maxValue[idx] + '"]').addClass('current');
-
-    self.options.containerElement.addClass('play');
-  });
-};
-
-/**
- * actual callback for the tick/interval
- */
-FlipClock.prototype.tick = function () {
-  this.doTick(0);
-};
-
-/**
- * Returns current time as int
- * @returns {Number}
- */
-FlipClock.prototype.getCurrentTime = function () {
-  var currentTime = [];
-
-  $('li.current', this.options.containerElement).each(function () {
-    currentTime.push($(this).data('digit'));
-  });
-
-  return parseInt(currentTime.join(''), 10);
-};
-
-/**
- * gets digit selector string for the given index in the digitselectors array
- * @param digitIndex
- * @returns {string}
- */
-FlipClock.prototype.getDigitSelectorByIndex = function (digitIndex) {
-  return 'ul.' + this.digitSelectors[digitIndex] + ' li';
-};
-
-/**
- * Return the segment group name for a passed digit element
- * @param digitElement
- * @returns {*}
- */
-FlipClock.prototype.getFaceSegmentGroupNameByDigitElement = function (digitElement) {
-  return digitElement.parent().data('face-segment-group');
-};
-
-/**
- * Return the segment group object for a passed digit element
- * @param digitElement
- * @returns {*}
- */
-FlipClock.prototype.getFaceSegmentByDigitElement = function (digitElement) {
-  return this.options.face[this.getFaceSegmentGroupNameByDigitElement(digitElement)];
-};
-
-/**
- * Return segment group dom objects by segment group name
- * @param segmentGroupName
- * @returns {*|jQuery|HTMLElement}
- */
-FlipClock.prototype.getFaceSegmentGroupDom = function (segmentGroupName) {
-  return $('.' + segmentGroupName, this.options.containerElement)
-};
-
-/**
- * Return dom object for the currently active digit for a segment group name
- * @param segmentGroupName
- * @returns {*|jQuery|HTMLElement}
- */
-FlipClock.prototype.getCurrentDigitDom = function (segmentGroupName) {
-  return $('.' + segmentGroupName + ' li.current', this.options.containerElement)
-};
-
-/**
- * Returns the value a segment group is currently representing selected by digit element
- * @param digitElement
- * @returns {string}
- */
-FlipClock.prototype.getCurrentFaceSegmentGroupValue = function (digitElement) {
-  var segmentGroupName = this.getFaceSegmentGroupNameByDigitElement(digitElement),
-    values = [];
-
-  this.getCurrentDigitDom(segmentGroupName).each(function (idx) {
-    values[idx] = $(this).data('digit');
-  });
-
-  return values.join('');
-};
-
-/**
- * handles the tick logic
- * @param digitIndex
- */
-FlipClock.prototype.doTick = function (digitIndex) {
-  var nextDigit, pseudoSelector;
-
-  // check if we reached maxTime and start over at 00:00:00
-  if (this.options.isCountdown === false && this.isMaxTimeReached()) {
-    this.resetDigits();
-    return;
-  }
-
-  this.options.containerElement.removeClass('play');
-
-  if (this.options.isCountdown === true) {
-    pseudoSelector = ":first-child";
-  } else {
-    pseudoSelector = ":last-child";
-  }
-
-  var activeDigit = $(this.getDigitSelectorByIndex(digitIndex) + ".current", this.options.containerElement);
-
-  if (activeDigit.html() == undefined) {
-    if (this.options.isCountdown) {
-      activeDigit = $(this.getDigitSelectorByIndex(digitIndex) + ":last-child", this.options.containerElement);
-      nextDigit = activeDigit.prev("li");
-    } else {
-      activeDigit = $(this.getDigitSelectorByIndex(digitIndex), this.options.containerElement).eq(0);
-      nextDigit = activeDigit.next("li");
-    }
-
-    activeDigit.addClass("previous").removeClass("current");
-
-    nextDigit.addClass("current");
-  } else if (activeDigit.is(pseudoSelector)) {
-    $(this.getDigitSelectorByIndex(digitIndex), this.options.containerElement).removeClass("previous");
-
-    // countdown target reached, halt
-    if (this.options.isCountdown === true && this.isMinTimeReached()) {
-      this.stop();
-      return;
-    }
-
-    activeDigit.addClass("previous").removeClass("current");
-
-    if (this.options.isCountdown === true) {
-      activeDigit.addClass("countdownFix");
-      activeDigit = $(this.getDigitSelectorByIndex(digitIndex) + ":last-child", this.options.containerElement);
-    } else {
-      activeDigit = $(this.getDigitSelectorByIndex(digitIndex), this.options.containerElement).eq(0);
-      activeDigit.addClass("clockFix");
-    }
-
-    activeDigit.addClass("current");
-
-    // animate the next segment once (if there is one)
-    if (typeof this.digitSelectors[digitIndex + 1] !== "undefined") {
-      this.doTick(digitIndex + 1);
-    }
-  } else {
-    $(this.getDigitSelectorByIndex(digitIndex), this.options.containerElement).removeClass("previous");
-
-    activeDigit.addClass("previous").removeClass("current");
-
-    if (this.options.isCountdown === true) {
-      nextDigit = activeDigit.prev("li");
-    } else {
-      nextDigit = activeDigit.next("li");
-    }
-
-    nextDigit.addClass("current");
-  }
-  // set segment to maxValue if it would move past it
-  var group = this.getFaceSegmentByDigitElement(activeDigit);
-  if (this.getCurrentFaceSegmentGroupValue(activeDigit) > group.maxValue) {
-    this.setFaceSegmentGroupMaxValue(this.getFaceSegmentGroupNameByDigitElement(activeDigit));
-  }
-
-  this.options.containerElement.addClass('play');
-  this.cleanZIndexFix(activeDigit, this.digitSelectors[digitIndex]);
-};
-
-/**
- * isMaxTimeReached
- * @returns {boolean}
- */
-FlipClock.prototype.isMaxTimeReached = function () {
-  return this.getCurrentTime() >= parseInt(this.options.maxTime.replace(/:/g, ''), 10);
-};
-
-/**
- * isMinTimeReached
- * @returns {boolean}
- */
-FlipClock.prototype.isMinTimeReached = function () {
-  return this.getCurrentTime() <= parseInt(this.options.minTime.replace(/:/g, ''), 10);
-};
-
-/**
- * Fixes flickering top half of digit
- *
- * @param activeDigit
- * @param selector
- */
-FlipClock.prototype.cleanZIndexFix = function (activeDigit, selector) {
-  if (this.options.isCountdown === true) {
-    var fix = $('.' + selector + ' .countdownFix', this.options.containerElement);
-
-    if (fix.length > 0 && !fix.hasClass("previous") && !fix.hasClass("current")) {
-      fix.removeClass("countdownFix");
-    }
-  } else {
-    activeDigit.siblings().removeClass("clockFix");
-  }
-};
+// Category Script
+var categories = document.getElementById('categories')
+var prev = document.getElementById('left')
+var next = document.getElementById('right')
+
+next.addEventListener('click', function (e) {
+  var start = categories.scrollLeft + 50, end = categories.scrollLeft + 300
+  main.sales.tween(start, end, 500, main.sales.easeOutQuart, categories);
+});
+prev.addEventListener('click', function (e) {
+  var start = categories.scrollLeft - 50, end = categories.scrollLeft - 300
+  main.sales.tween(start, end, 500, main.sales.easeOutQuart, categories);
+});
